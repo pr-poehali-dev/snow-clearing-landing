@@ -45,10 +45,10 @@ const Index = () => {
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-black mb-4 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
             Быстрый Спуск к Решению Вашей Проблемы!
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-foreground font-semibold mb-6">
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground font-semibold mb-3">
             Очистка крыш от снега и наледи в Москве и МО
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-4">
             <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
                 <Icon name="Send" size={20} className="mr-2" />
@@ -62,6 +62,9 @@ const Index = () => {
               </Button>
             </a>
           </div>
+          <p className="text-base sm:text-lg text-primary font-bold mt-4">
+            Безопасность и Порядок на Вашей Кровле – Наша Профессия!
+          </p>
         </div>
       </section>
 
@@ -71,7 +74,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                Профессиональная Очистка Кровли
+                Почему Выбирают Нас?
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground mb-8">
                 Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.
