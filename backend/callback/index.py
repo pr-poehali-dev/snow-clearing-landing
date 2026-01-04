@@ -2,8 +2,11 @@ import json
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 from datetime import datetime
 import os
+import base64
 
 def handler(event: dict, context) -> dict:
     """API для обработки заявок обратного звонка с отправкой на почту"""
@@ -38,15 +41,18 @@ def handler(event: dict, context) -> dict:
         body = json.loads(event.get('body', '{}'))
         name = body.get('name', '').strip()
         phone = body.get('phone', '').strip()
+        description = body.get('description', '').strip()
+        file_data = body.get('file', '')
+        file_name = body.get('fileName', '')
         
-        if not name or not phone:
+        if not name or not phone or not description:
             return {
                 'statusCode': 400,
                 'headers': {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': json.dumps({'error': 'Имя и телефон обязательны'}),
+                'body': json.dumps({'error': 'Имя, телефон и описание задачи обязательны'}),
                 'isBase64Encoded': False
             }
         
@@ -67,6 +73,10 @@ def handler(event: dict, context) -> dict:
 
 Имя: {name}
 Телефон: {phone}
+
+Описание задачи:
+{description}
+
 Дата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}
 
 ---
@@ -74,6 +84,17 @@ def handler(event: dict, context) -> dict:
         """
         
         msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
+        
+        if file_data and file_name:
+            try:
+                file_bytes = base64.b64decode(file_data)
+                part = MIMEBase('application', 'octet-stream')
+                part.set_payload(file_bytes)
+                encoders.encode_base64(part)
+                part.add_header('Content-Disposition', f'attachment; filename="{file_name}"')
+                msg.attach(part)
+            except Exception as e:
+                print(f'Ошибка прикрепления файла: {str(e)}')
         
         if smtp_user and smtp_password:
             with smtplib.SMTP(smtp_host, smtp_port) as server:

@@ -1,14 +1,57 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 
 const CallbackForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  const formatPhoneNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    
+    if (cleaned.length === 0) return '';
+    
+    let formatted = '+7';
+    if (cleaned.length > 1) {
+      formatted += ' (' + cleaned.substring(1, 4);
+    }
+    if (cleaned.length >= 5) {
+      formatted += ') ' + cleaned.substring(4, 7);
+    }
+    if (cleaned.length >= 8) {
+      formatted += '-' + cleaned.substring(7, 9);
+    }
+    if (cleaned.length >= 10) {
+      formatted += '-' + cleaned.substring(9, 11);
+    }
+    
+    return formatted;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const formatted = formatPhoneNumber(value);
+    setPhone(formatted);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      if (selectedFile.size > 10 * 1024 * 1024) {
+        setError('Файл слишком большой. Максимум 10 МБ');
+        return;
+      }
+      setFile(selectedFile);
+      setError('');
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,12 +59,34 @@ const CallbackForm = () => {
     setError('');
 
     try {
+      let fileBase64 = '';
+      let fileName = '';
+      
+      if (file) {
+        const reader = new FileReader();
+        fileBase64 = await new Promise((resolve, reject) => {
+          reader.onload = () => {
+            const base64 = reader.result as string;
+            resolve(base64.split(',')[1]);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        fileName = file.name;
+      }
+
       const response = await fetch('https://functions.poehali.dev/d4670e0e-716b-4c9a-af72-55519503af63', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ 
+          name, 
+          phone,
+          description,
+          file: fileBase64,
+          fileName
+        }),
       });
 
       const data = await response.json();
@@ -30,6 +95,8 @@ const CallbackForm = () => {
         setIsSuccess(true);
         setName('');
         setPhone('');
+        setDescription('');
+        setFile(null);
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
         setError(data.error || 'Ошибка отправки заявки');
@@ -78,10 +145,51 @@ const CallbackForm = () => {
           type="tel"
           placeholder="+7 (___) ___-__-__"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={handlePhoneChange}
           required
           className="h-12 text-lg"
+          maxLength={18}
         />
+      </div>
+
+      <div>
+        <Textarea
+          placeholder="Опишите задачу: что нужно очистить, площадь, высота здания, особые условия..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+          className="min-h-32 text-lg resize-none"
+        />
+      </div>
+
+      <div>
+        <label className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6 cursor-pointer hover:border-primary transition-colors">
+          <Icon name="Upload" size={32} className="text-muted-foreground mb-2" />
+          <span className="text-sm text-muted-foreground text-center">
+            {file ? file.name : 'Прикрепить фото объекта (необязательно)'}
+          </span>
+          <span className="text-xs text-muted-foreground mt-1">Максимум 10 МБ</span>
+          <input
+            type="file"
+            accept="image/*,.pdf,.doc,.docx"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+        </label>
+        {file && (
+          <div className="flex items-center justify-between mt-2 p-2 bg-card rounded">
+            <span className="text-sm truncate">{file.name}</span>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={() => setFile(null)}
+              className="ml-2"
+            >
+              <Icon name="X" size={16} />
+            </Button>
+          </div>
+        )}
       </div>
 
       {error && (

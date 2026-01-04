@@ -1,12 +1,13 @@
 {
   "tests": [
     {
-      "name": "Test callback form submission",
+      "name": "Test callback form submission with description",
       "method": "POST",
       "path": "/",
       "body": {
         "name": "Иван Петров",
-        "phone": "+7 (999) 123-45-67"
+        "phone": "+7 (999) 123-45-67",
+        "description": "Нужно почистить крышу торгового центра, площадь около 500 кв.м"
       },
       "expectedStatus": 200,
       "expectedBody": {
@@ -16,10 +17,11 @@
       "bodyMatcher": "partial"
     },
     {
-      "name": "Test missing name",
+      "name": "Test missing description",
       "method": "POST",
       "path": "/",
       "body": {
+        "name": "Иван Петров",
         "phone": "+7 (999) 123-45-67"
       },
       "expectedStatus": 400,
