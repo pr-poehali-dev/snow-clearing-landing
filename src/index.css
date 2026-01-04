@@ -101,6 +101,10 @@
     @apply bg-background text-foreground font-roboto;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   h1,
   h2,
   h3,
