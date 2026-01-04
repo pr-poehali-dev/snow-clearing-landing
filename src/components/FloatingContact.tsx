@@ -9,6 +9,12 @@ interface FloatingContactProps {
 const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const openMaxWidget = () => {
+    if (window.Marquiz) {
+      window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+    }
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {isOpen && (
@@ -31,6 +37,14 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
               Позвонить
             </Button>
           </a>
+          <Button 
+            size="lg" 
+            onClick={openMaxWidget}
+            className="bg-secondary hover:bg-secondary/90 shadow-lg w-full"
+          >
+            <Icon name="MessagesSquare" size={20} className="mr-2" />
+            MAX
+          </Button>
         </div>
       )}
       
