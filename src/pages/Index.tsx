@@ -35,12 +35,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
-      <div className="fixed right-24 top-0 z-30 hidden xl:block pointer-events-none">
+      <div className="fixed right-8 top-0 z-30 hidden lg:block pointer-events-none">
         <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-gray-600 via-gray-500 to-gray-400"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-orange-600 via-orange-500 to-orange-400"
           style={{ 
             height: `calc(100vh - 150px)`,
-            boxShadow: '0 0 8px rgba(0,0,0,0.3)'
+            boxShadow: '0 0 10px rgba(251, 146, 60, 0.5)'
           }}
         ></div>
         <div 
@@ -49,10 +49,16 @@ const Index = () => {
             transform: `translateY(${Math.min(scrollProgress * 6.5, 82)}vh)`,
             opacity: 1,
             transition: 'transform 0.3s ease-out',
-            marginTop: '20px'
+            marginTop: '60px'
           }}
         >
-          <div className="text-5xl animate-swing" style={{ animationDuration: '4s' }}>
+          <div 
+            className="text-6xl animate-swing filter drop-shadow-2xl" 
+            style={{ 
+              animationDuration: '4s',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+            }}
+          >
             🧗‍♂️
           </div>
         </div>
