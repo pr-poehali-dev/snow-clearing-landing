@@ -156,6 +156,25 @@ const Index = () => {
 
       <section id="safety" className="py-20 px-4">
         <div className="container mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Наши Преимущества</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              { icon: 'Shield', title: 'Безопасность', desc: 'Сертифицированное оборудование и допуски' },
+              { icon: 'Clock', title: 'Оперативность', desc: 'Выезд в день обращения' },
+              { icon: 'BadgeCheck', title: 'Гарантия', desc: 'Качество работ документально' },
+              { icon: 'Wallet', title: 'Прозрачность', desc: 'Фиксированная стоимость без скрытых платежей' }
+            ].map((item, index) => (
+              <Card key={index} className="text-center hover-scale bg-card">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name={item.icon} size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img 
@@ -165,7 +184,7 @@ const Index = () => {
               />
             </div>
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Безопасность превыше всего</h2>
+              <h3 className="text-3xl font-bold mb-6">Безопасность превыше всего</h3>
               <p className="text-lg text-muted-foreground mb-8">
                 Мы используем только сертифицированное альпинистское оборудование и строго соблюдаем технику безопасности
               </p>
@@ -184,6 +203,70 @@ const Index = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Нам Доверяют</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+            {[
+              { name: 'ПИК', logo: '🏢' },
+              { name: 'Самолет', logo: '✈️' },
+              { name: 'Эталон', logo: '🏗️' },
+              { name: 'А101', logo: '🏘️' }
+            ].map((client, index) => (
+              <div key={index} className="bg-card p-6 rounded-xl text-center hover-scale">
+                <div className="text-5xl mb-3">{client.logo}</div>
+                <div className="font-bold text-muted-foreground">{client.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-card/50">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Часто Задаваемые Вопросы</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Ответы на популярные вопросы наших клиентов</p>
+          <div className="space-y-4">
+            {[
+              {
+                question: 'Как быстро вы можете выехать на объект?',
+                answer: 'Мы работаем оперативно — в большинстве случаев выезжаем в день обращения. При срочной необходимости возможен выезд в течение 2-3 часов.'
+              },
+              {
+                question: 'Какая стоимость ваших услуг?',
+                answer: 'Стоимость зависит от площади кровли, степени наледи и высоты здания. Очистка от снега — от 150 ₽/м², удаление наледи — от 200 ₽/м². Точную цену назовем после осмотра объекта.'
+              },
+              {
+                question: 'Есть ли у вас документы и сертификаты?',
+                answer: 'Да, все наши специалисты имеют допуски к высотным работам, используем сертифицированное оборудование. Предоставляем полный пакет документов и работаем по договору с гарантией.'
+              },
+              {
+                question: 'В каких районах вы работаете?',
+                answer: 'Мы работаем по всей Москве и Московской области. География не ограничена — выезжаем на любые объекты в регионе.'
+              },
+              {
+                question: 'Что входит в стоимость услуги?',
+                answer: 'В стоимость входит: выезд специалиста, очистка кровли, удаление наледи, вывоз снега (при необходимости), страхование работ. Никаких скрытых платежей.'
+              }
+            ].map((faq, index) => (
+              <Card key={index} className="hover:border-primary/50 transition-all">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Icon name="HelpCircle" size={20} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{faq.question}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
