@@ -37,9 +37,12 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
       <Button
         size="lg"
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-primary hover:bg-primary/90 shadow-xl rounded-full w-14 h-14 p-0 transition-all ${
-          shouldBlink ? 'animate-pulse ring-4 ring-primary/50' : ''
+        className={`bg-primary hover:bg-primary/90 shadow-xl rounded-full w-14 h-14 p-0 ${
+          shouldBlink ? 'animate-call-attention' : 'transition-all'
         }`}
+        style={shouldBlink ? {
+          filter: 'brightness(1.3) drop-shadow(0 0 20px rgba(251, 146, 60, 0.8))'
+        } : undefined}
       >
         <Icon name={isOpen ? "X" : "MessageCircle"} size={24} />
       </Button>
