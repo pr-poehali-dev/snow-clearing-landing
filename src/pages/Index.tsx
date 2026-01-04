@@ -35,20 +35,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
-      <div className="fixed right-4 top-0 z-30 hidden xl:block pointer-events-none">
+      <div className="fixed right-24 top-0 z-30 hidden xl:block pointer-events-none">
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-gray-600 via-gray-500 to-gray-400"
           style={{ 
-            height: `calc(100vh - 120px)`,
+            height: `calc(100vh - 150px)`,
             boxShadow: '0 0 8px rgba(0,0,0,0.3)'
           }}
         ></div>
         <div 
           className="relative"
           style={{ 
-            transform: `translateY(${Math.min(scrollProgress * 5, 80)}vh)`,
-            opacity: scrollProgress < 85 ? 1 : 0,
-            transition: 'transform 0.3s ease-out, opacity 0.5s',
+            transform: `translateY(${Math.min(scrollProgress * 6.5, 82)}vh)`,
+            opacity: 1,
+            transition: 'transform 0.3s ease-out',
             marginTop: '20px'
           }}
         >
