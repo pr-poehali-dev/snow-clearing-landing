@@ -10,8 +10,12 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openMaxWidget = () => {
-    if (window.Marquiz) {
+    console.log('Попытка открыть MAX виджет...', window.Marquiz);
+    if (window.Marquiz && typeof window.Marquiz.showModal === 'function') {
       window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+    } else {
+      console.error('MAX виджет еще не загружен. Попробуйте через несколько секунд.');
+      alert('Виджет загружается, попробуйте через пару секунд');
     }
   };
 

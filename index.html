@@ -64,14 +64,23 @@
 <!-- MAX Widget -->
 <script>
   (function(w, d, s, o) {
-    var j = d.createElement(s); j.async = true; j.src = '//script.marquiz.io/v2.js';
+    var j = d.createElement(s); 
+    j.async = true; 
+    j.src = '//script.marquiz.io/v2.js';
     j.onload = function() {
-      if (document.readyState !== 'loading') Marquiz.init(o);
-      else document.addEventListener("DOMContentLoaded", function() {
-        Marquiz.init(o);
-      });
+      if (document.readyState !== 'loading') {
+        if (typeof Marquiz !== 'undefined') {
+          Marquiz.init(o);
+        }
+      } else {
+        document.addEventListener("DOMContentLoaded", function() {
+          if (typeof Marquiz !== 'undefined') {
+            Marquiz.init(o);
+          }
+        });
+      }
     };
-    d.head.insertBefore(j, d.head.firstElementChild);
+    d.body.appendChild(j);
   })(window, document, 'script', {
     host: '//quiz.marquiz.io',
     region: 'eu',
