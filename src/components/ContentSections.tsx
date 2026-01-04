@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import CallbackForm from '@/components/CallbackForm';
 
 const ContentSections = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -326,9 +327,11 @@ const ContentSections = () => {
                   </a>
                 </div>
                 
-                <div className="text-center pt-4">
+                <div className="text-center pt-4 pb-6 border-b border-border">
                   <p className="text-muted-foreground">Также доступна связь через MAX</p>
                 </div>
+
+                <CallbackForm />
               </div>
               
               <div className="mt-8 pt-8 border-t border-border">
