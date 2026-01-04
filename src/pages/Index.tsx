@@ -76,7 +76,9 @@ const Index = () => {
           }}
         >
           <div 
-            className="text-4xl animate-swing filter drop-shadow-xl" 
+            className={`text-4xl animate-swing filter drop-shadow-xl ${
+              isClimberAtBottom ? 'animate-climber-blink' : ''
+            }`}
             style={{ 
               animationDuration: '4s',
               textShadow: '1px 1px 3px rgba(0,0,0,0.4)'

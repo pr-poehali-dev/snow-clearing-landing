@@ -164,4 +164,20 @@
   .animate-call-attention {
     animation: call-attention 1.5s ease-in-out infinite;
   }
+
+  @keyframes climber-blink {
+    0%,
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 0px rgba(251, 146, 60, 0));
+    }
+    50% {
+      opacity: 0.3;
+      filter: drop-shadow(0 0 15px rgba(251, 146, 60, 0.9));
+    }
+  }
+
+  .animate-climber-blink {
+    animation: climber-blink 1.5s ease-in-out infinite;
+  }
 }
