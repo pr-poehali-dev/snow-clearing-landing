@@ -207,25 +207,6 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Нам Доверяют</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {[
-              { name: 'ПИК', logo: '🏢' },
-              { name: 'Самолет', logo: '✈️' },
-              { name: 'Эталон', logo: '🏗️' },
-              { name: 'А101', logo: '🏘️' }
-            ].map((client, index) => (
-              <div key={index} className="bg-card p-6 rounded-xl text-center hover-scale">
-                <div className="text-5xl mb-3">{client.logo}</div>
-                <div className="font-bold text-muted-foreground">{client.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-20 px-4 bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Часто Задаваемые Вопросы</h2>
