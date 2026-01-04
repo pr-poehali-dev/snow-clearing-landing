@@ -22,7 +22,7 @@ const Index = () => {
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="#" className="text-2xl font-bold text-primary hover:text-primary/80 transition">
-            <img src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/5cabcbce-0507-4946-82db-284646f5b98e.jpg" alt="Дюльфер.рф" className="h-12 w-auto rounded-lg" style={{filter: 'brightness(1.1) contrast(1.1)'}} />
+            <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-14 w-auto" />
           </a>
           <nav className="hidden md:flex gap-6">
             <a href="#services" className="story-link hover:text-primary transition">Услуги</a>
