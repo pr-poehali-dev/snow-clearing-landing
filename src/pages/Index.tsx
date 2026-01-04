@@ -35,28 +35,29 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
-      <div 
-        className="fixed right-8 top-0 z-40 hidden lg:block"
-        style={{ 
-          transform: `translateY(${scrollProgress * 6}px)`,
-          opacity: scrollProgress < 95 ? 1 : 0
-        }}
-      >
-        <div className="relative">
-          <div 
-            className="absolute top-0 left-1/2 w-0.5 bg-gradient-to-b from-gray-400 to-transparent"
-            style={{ height: '120px' }}
-          ></div>
-          <div 
-            className="text-5xl animate-swing"
-            style={{ 
-              animationDuration: '3s',
-              transformOrigin: 'top center',
-              marginTop: '100px'
-            }}
-          >
-            🧗‍♂️
-          </div>
+      <div className="fixed right-12 top-0 z-40 hidden lg:block pointer-events-none">
+        <div 
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-gray-600 via-gray-500 to-transparent"
+          style={{ 
+            height: `${Math.min(scrollProgress * 8, 100)}vh`,
+            boxShadow: '0 0 8px rgba(0,0,0,0.3)'
+          }}
+        ></div>
+        <div 
+          className="relative animate-swing"
+          style={{ 
+            transform: `translateY(${scrollProgress * 6}px)`,
+            opacity: scrollProgress < 95 ? 1 : 0,
+            animationDuration: '4s',
+            transformOrigin: 'top center',
+            marginTop: '80px'
+          }}
+        >
+          <img 
+            src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/d78bb339-2baa-4a00-880d-d1f7d41a15d1.jpg"
+            alt="Альпинист"
+            className="w-16 h-16 object-contain drop-shadow-lg rounded-full bg-white/90 p-2"
+          />
         </div>
       </div>
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
