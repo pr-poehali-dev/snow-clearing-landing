@@ -180,4 +180,21 @@
   .animate-climber-blink {
     animation: climber-blink 1.5s ease-in-out infinite;
   }
+
+  @keyframes rope-vibrate {
+    0%,
+    100% {
+      transform: translateX(0) scaleX(1);
+    }
+    25% {
+      transform: translateX(-2px) scaleX(0.98);
+    }
+    75% {
+      transform: translateX(2px) scaleX(0.98);
+    }
+  }
+
+  .animate-rope-vibrate {
+    animation: rope-vibrate 0.3s ease-in-out infinite;
+  }
 }

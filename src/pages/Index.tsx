@@ -60,7 +60,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground relative">
       <div className="fixed right-4 top-0 z-30 hidden lg:block pointer-events-none">
         <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-orange-600 via-orange-500 to-orange-400"
+          className={`absolute top-0 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-orange-600 via-orange-500 to-orange-400 ${
+            isClimberAtBottom ? 'animate-rope-vibrate' : ''
+          }`}
           style={{ 
             height: `calc(100vh - 150px)`,
             boxShadow: '0 0 8px rgba(251, 146, 60, 0.4)'
@@ -75,17 +77,16 @@ const Index = () => {
             marginTop: '60px'
           }}
         >
-          <div 
-            className={`text-4xl animate-swing filter drop-shadow-xl ${
+          <img 
+            src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/539ab0a6-f2c8-4bc0-913c-b0cc36b43d94.jpg"
+            alt="Альпинист"
+            className={`w-20 h-20 object-contain animate-swing filter drop-shadow-xl ${
               isClimberAtBottom ? 'animate-climber-blink' : ''
             }`}
             style={{ 
-              animationDuration: '4s',
-              textShadow: '1px 1px 3px rgba(0,0,0,0.4)'
+              animationDuration: '4s'
             }}
-          >
-            🧗‍♂️
-          </div>
+          />
         </div>
       </div>
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
