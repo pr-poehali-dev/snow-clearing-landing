@@ -14,6 +14,7 @@ const Index = () => {
   });
 
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isClimberAtBottom, setIsClimberAtBottom] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +23,32 @@ const Index = () => {
       const scrolled = window.scrollY;
       const progress = (scrolled / documentHeight) * 100;
       setScrollProgress(Math.min(progress, 100));
+      
+      const climberPosition = Math.min(progress * 6.5, 82);
+      setIsClimberAtBottom(climberPosition >= 80);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('section').forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -468,7 +491,7 @@ const Index = () => {
         </div>
       </footer>
 
-      <FloatingContact />
+      <FloatingContact shouldBlink={isClimberAtBottom} />
     </div>
   );
 };

@@ -2,7 +2,11 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useState } from 'react';
 
-const FloatingContact = () => {
+interface FloatingContactProps {
+  shouldBlink?: boolean;
+}
+
+const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,7 +37,9 @@ const FloatingContact = () => {
       <Button
         size="lg"
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-primary hover:bg-primary/90 shadow-xl rounded-full w-14 h-14 p-0"
+        className={`bg-primary hover:bg-primary/90 shadow-xl rounded-full w-14 h-14 p-0 transition-all ${
+          shouldBlink ? 'animate-pulse ring-4 ring-primary/50' : ''
+        }`}
       >
         <Icon name={isOpen ? "X" : "MessageCircle"} size={24} />
       </Button>
