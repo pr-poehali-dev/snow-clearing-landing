@@ -36,13 +36,28 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <div 
-        className="fixed left-4 top-20 z-40 text-6xl transition-all duration-300 ease-out hidden lg:block"
+        className="fixed right-8 top-0 z-40 hidden lg:block"
         style={{ 
           transform: `translateY(${scrollProgress * 6}px)`,
           opacity: scrollProgress < 95 ? 1 : 0
         }}
       >
-        🧗
+        <div className="relative">
+          <div 
+            className="absolute top-0 left-1/2 w-0.5 bg-gradient-to-b from-gray-400 to-transparent"
+            style={{ height: '120px' }}
+          ></div>
+          <div 
+            className="text-5xl animate-swing"
+            style={{ 
+              animationDuration: '3s',
+              transformOrigin: 'top center',
+              marginTop: '100px'
+            }}
+          >
+            🧗‍♂️
+          </div>
+        </div>
       </div>
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
