@@ -207,6 +207,59 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="container mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">География Работы</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Москва и Московская область в радиусе 10 км от МКАД</p>
+          
+          <div className="max-w-4xl mx-auto">
+            <Card className="overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative h-[400px] md:h-[500px]">
+                  <iframe 
+                    src="https://yandex.ru/map-widget/v1/?ll=37.617700%2C55.755800&z=10&l=map&mode=search&text=МКАД"
+                    width="100%" 
+                    height="100%" 
+                    frameBorder="0"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              </CardContent>
+            </Card>
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="MapPin" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Вся Москва</h3>
+                  <p className="text-muted-foreground">Работаем во всех районах столицы</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Car" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">10 км от МКАД</h3>
+                  <p className="text-muted-foreground">Выезжаем в ближнее Подмосковье</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Clock" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Быстрый выезд</h3>
+                  <p className="text-muted-foreground">В течение 2-3 часов при срочности</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 px-4 bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Часто Задаваемые Вопросы</h2>
