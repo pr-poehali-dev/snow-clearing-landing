@@ -1,12 +1,24 @@
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const ContentSections = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"
+          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        />
         <div className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
@@ -32,6 +44,7 @@ const ContentSections = () => {
                 src="https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg"
                 alt="Промышленные альпинисты за работой"
                 className="rounded-2xl shadow-2xl hover-scale"
+                style={{ transform: `translateY(${scrollY * 0.1}px)` }}
               />
               <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-xl">
                 <div className="text-2xl font-bold mb-1">Оперативный</div>
@@ -118,6 +131,7 @@ const ContentSections = () => {
                 src="https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg"
                 alt="Профессиональная очистка крыш"
                 className="rounded-2xl shadow-xl hover-scale"
+                style={{ transform: `translateY(${scrollY * 0.15}px)` }}
               />
             </div>
             <div>
