@@ -21,7 +21,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-primary">Дюльфер.рф</div>
+          <a href="#" className="text-2xl font-bold text-primary hover:text-primary/80 transition">
+            <img src="https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg" alt="Дюльфер.рф" className="h-12 w-auto" />
+          </a>
           <nav className="hidden md:flex gap-6">
             <a href="#services" className="story-link hover:text-primary transition">Услуги</a>
             <a href="#safety" className="story-link hover:text-primary transition">Безопасность</a>
@@ -29,10 +31,12 @@ const Index = () => {
             <a href="#reviews" className="story-link hover:text-primary transition">Отзывы</a>
             <a href="#contacts" className="story-link hover:text-primary transition">Контакты</a>
           </nav>
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Icon name="Phone" size={16} className="mr-2" />
-            Позвонить
-          </Button>
+          <a href="tel:+79339277797">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Icon name="Phone" size={16} className="mr-2" />
+              +7 (933) 927-77-97
+            </Button>
+          </a>
         </div>
       </header>
 
@@ -63,8 +67,8 @@ const Index = () => {
             </div>
             <div className="relative animate-scale-in">
               <img 
-                src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/d2da4791-ccdc-43f4-987c-ba819f253283.jpg"
-                alt="Промышленный альпинист за работой"
+                src="https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg"
+                alt="Промышленные альпинисты за работой"
                 className="rounded-2xl shadow-2xl hover-scale"
               />
               <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-xl">
@@ -130,8 +134,8 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img 
-                src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/a37cd9b3-b0cb-4c64-b80d-b6c22fe97914.jpg"
-                alt="Профессиональное оборудование"
+                src="https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg"
+                alt="Профессиональная очистка крыш"
                 className="rounded-2xl shadow-xl hover-scale"
               />
             </div>
@@ -284,7 +288,7 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Телефон</div>
-                      <div className="font-bold text-lg">+7 (495) 123-45-67</div>
+                      <a href="tel:+79339277797" className="font-bold text-lg hover:text-primary transition">+7 (933) 927-77-97</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -293,7 +297,16 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Email</div>
-                      <div className="font-bold text-lg">info@дюльфер.рф</div>
+                      <a href="mailto:dulfer161@yandex.ru" className="font-bold text-lg hover:text-secondary transition">dulfer161@yandex.ru</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Icon name="Globe" size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Портфолио</div>
+                      <a href="https://дюльфер.рф" target="_blank" rel="noopener noreferrer" className="font-bold text-lg hover:text-primary transition">дюльфер.рф</a>
                     </div>
                   </div>
                 </div>
