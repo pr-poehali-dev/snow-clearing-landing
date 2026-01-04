@@ -47,11 +47,11 @@ const Index = () => {
         <div className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-montserrat font-black mb-6 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-enter">
                 Быстрый Спуск к Решению Вашей Проблемы!
               </h1>
-              <p className="text-2xl text-primary font-semibold mb-4">
-                Безопасность и Порядок на Вашей Кровле – Наша Профессия!
+              <p className="text-2xl md:text-3xl text-foreground font-bold mb-4 animate-fade-in">
+                Очистка крыш от снега и наледи в Москве и МО
               </p>
               <p className="text-xl text-muted-foreground mb-8">
                 Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.

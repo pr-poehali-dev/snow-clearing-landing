@@ -20,7 +20,8 @@ export default {
 		extend: {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
-				roboto: ['Roboto', 'sans-serif']
+				roboto: ['Roboto', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif']
 			},
 			colors: {
 				border: 'hsl(var(--border))',
