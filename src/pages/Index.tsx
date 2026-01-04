@@ -21,19 +21,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition">
-            <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-10 sm:h-14 w-auto" />
-            <div className="text-lg sm:text-xl font-bold text-primary">Дюльфер.рф</div>
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <a href="#" className="flex items-center gap-2 hover:opacity-80 transition">
+            <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-10 w-auto" />
+            <div className="text-base sm:text-lg font-bold text-primary">Дюльфер.рф</div>
           </a>
-          <nav className="hidden md:flex gap-6">
-            <a href="#services" className="story-link hover:text-primary transition">Услуги</a>
-            <a href="#safety" className="story-link hover:text-primary transition">Безопасность</a>
-            <a href="#advantages" className="story-link hover:text-primary transition">Преимущества</a>
-            <a href="#reviews" className="story-link hover:text-primary transition">Отзывы</a>
-            <a href="#contacts" className="story-link hover:text-primary transition">Контакты</a>
-          </nav>
-          <a href="tel:+79339277797">
+          <a href="tel:+79339277797" className="md:hidden">
+            <Button size="sm" className="bg-primary hover:bg-primary/90">
+              <Icon name="Phone" size={16} />
+            </Button>
+          </a>
+          <a href="tel:+79339277797" className="hidden md:block">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Icon name="Phone" size={16} className="mr-2" />
               +7 (933) 927-77-97
@@ -42,33 +40,51 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+      <section className="pt-20 pb-8 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
+        <div className="container mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-black mb-4 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+            Быстрый Спуск к Решению Вашей Проблемы!
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground font-semibold mb-6">
+            Очистка крыш от снега и наледи в Москве и МО
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+            <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
+                <Icon name="Send" size={20} className="mr-2" />
+                Telegram
+              </Button>
+            </a>
+            <a href="tel:+79339277797" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 w-full">
+                <Icon name="Phone" size={20} className="mr-2" />
+                Позвонить
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
         <div className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-montserrat font-black mb-6 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-enter">
-                Быстрый Спуск к Решению Вашей Проблемы!
-              </h1>
-              <p className="text-2xl md:text-3xl text-foreground font-bold mb-4 animate-fade-in">
-                Очистка крыш от снега и наледи в Москве и МО
-              </p>
-              <p className="text-xl text-muted-foreground mb-8">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                Профессиональная Очистка Кровли
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8">
                 Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 hover-scale w-full">
-                    <Icon name="Send" size={20} className="mr-2" />
-                    Написать в Telegram
-                  </Button>
-                </a>
-                <a href="tel:+79339277797">
-                  <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 text-lg px-8 w-full">
-                    <Icon name="Phone" size={20} className="mr-2" />
-                    Позвонить сейчас
-                  </Button>
-                </a>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-card rounded-lg">
+                  <div className="text-3xl font-bold text-primary mb-1">10+</div>
+                  <div className="text-sm text-muted-foreground">лет опыта</div>
+                </div>
+                <div className="text-center p-4 bg-card rounded-lg">
+                  <div className="text-3xl font-bold text-primary mb-1">500+</div>
+                  <div className="text-sm text-muted-foreground">объектов</div>
+                </div>
               </div>
             </div>
             <div className="relative animate-scale-in">
