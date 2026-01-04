@@ -77,16 +77,15 @@ const Index = () => {
             marginTop: '60px'
           }}
         >
-          <img 
-            src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/539ab0a6-f2c8-4bc0-913c-b0cc36b43d94.jpg"
-            alt="Альпинист"
-            className={`w-20 h-20 object-contain animate-swing filter drop-shadow-xl ${
-              isClimberAtBottom ? 'animate-climber-blink' : ''
-            }`}
+          <div 
+            className="text-4xl animate-swing filter drop-shadow-xl"
             style={{ 
-              animationDuration: '4s'
+              animationDuration: '4s',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.4)'
             }}
-          />
+          >
+            🧗‍♂️
+          </div>
         </div>
       </div>
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
