@@ -23,10 +23,10 @@ const Index = () => {
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3 hover:opacity-80 transition">
-            <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-14 w-auto" />
-            <div className="hidden lg:block">
-              <div className="text-xl font-bold text-primary">Дюльфер.рф</div>
-              <div className="text-xs text-muted-foreground">Быстрый спуск к решению Вашей проблемы!</div>
+            <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-12 sm:h-14 w-auto" />
+            <div>
+              <div className="text-lg sm:text-xl font-bold text-primary">Дюльфер.рф</div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Быстрый спуск к решению<br className="sm:hidden" /> Вашей проблемы!</div>
             </div>
           </a>
           <nav className="hidden md:flex gap-6">
