@@ -188,7 +188,7 @@ const CallbackForm = () => {
         <label className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6 cursor-pointer hover:border-primary transition-colors">
           <Icon name="Upload" size={32} className="text-muted-foreground mb-2" />
           <span className="text-sm text-muted-foreground text-center">
-            {file ? file.name : 'Прикрепить фото объекта (необязательно)'}
+            {file ? file.name : 'Прикрепить фото или проект объекта (необязательно)'}
           </span>
           <span className="text-xs text-muted-foreground mt-1">Максимум 10 МБ</span>
           <input
