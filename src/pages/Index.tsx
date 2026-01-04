@@ -42,11 +42,13 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Чистка снега и наледи с крыш
-                <span className="text-primary"> в Москве и МО</span>
+                Очистка Крыш от Снега и Наледи
               </h1>
+              <p className="text-2xl text-primary font-semibold mb-4">
+                Безопасность и Порядок на Вашей Кровле – Наша Профессия!
+              </p>
               <p className="text-xl text-muted-foreground mb-8">
-                Профессиональные промышленные альпинисты с опытом более 10 лет. Работаем быстро, безопасно и качественно.
+                Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 hover-scale">
@@ -77,27 +79,28 @@ const Index = () => {
       <section id="services" className="py-20 px-4 bg-card/50">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наши услуги</h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">Полный спектр работ по очистке кровли</p>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Не откладывайте важные работы на потом 📉 Доверьте их профессионалам промышленного альпинизма уже сегодня! ✔️💯</p>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {[
               {
                 icon: 'Snowflake',
-                title: 'Удаление снега',
-                description: 'Профессиональная очистка кровли от снежных масс любой сложности',
+                title: 'Комплексная Очистка Кровель от Снега',
+                features: [
+                  'Удаление снежных масс: Полная или частичная очистка крыш любой конфигурации и площади',
+                  'Предотвращение критической нагрузки: Своевременное снижение давления снега на кровлю, предотвращение деформаций и протечек'
+                ],
                 price: 'от 150 ₽/м²'
               },
               {
                 icon: 'Droplets',
-                title: 'Скол наледи',
-                description: 'Безопасное удаление ледяных наростов и сосулек с крыш и козырьков',
+                title: 'Удаление Сосулек и Наледи (Периметр)',
+                features: [
+                  'Безопасное сбивание сосулек: Аккуратное удаление ледяных образований с карнизов, парапетов и водостоков',
+                  'Очистка водосточных систем: Восстановление проходимости желобов и труб для правильного отвода талой воды',
+                  'Работа на высоте: Промышленные альпинисты обеспечат доступ к самым сложным и опасным участкам'
+                ],
                 price: 'от 200 ₽/м²'
-              },
-              {
-                icon: 'Shield',
-                title: 'Установка снегозадержателей',
-                description: 'Монтаж систем безопасности для предотвращения схода снега',
-                price: 'от 500 ₽/п.м.'
               }
             ].map((service, index) => (
               <Card key={index} className="hover-scale hover:border-primary/50 transition-all duration-300 bg-card">
@@ -106,7 +109,14 @@ const Index = () => {
                     <Icon name={service.icon} size={32} className="text-primary" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4">{service.description}</p>
+                  <ul className="space-y-2 mb-4">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="text-muted-foreground flex items-start gap-2">
+                        <Icon name="CheckCircle2" size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <div className="text-2xl font-bold text-primary">{service.price}</div>
                 </CardContent>
               </Card>
@@ -290,6 +300,27 @@ const Index = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      <section className="py-12 px-4 bg-card/30">
+        <div className="container mx-auto">
+          <h3 className="text-2xl font-bold text-center mb-8">Мы специализируемся на</h3>
+          <div className="flex flex-wrap justify-center gap-3 text-sm">
+            {[
+              'очистка крыш от снега', 'уборка снега с крыши', 'удаление наледи с крыш',
+              'сбить сосульки с крыши', 'чистка кровли от снега', 'уборка снега с кровли',
+              'очистка крыш', 'уборка снега', 'очистка кровли от снега и наледи',
+              'уборка снега и сосулек с крыш', 'чистка крыши от наледи', 'удаление сосулек',
+              'услуги по уборке снега с крыш', 'промышленный альпинизм очистка крыш',
+              'очистка крыш альпинистами', 'сбивание сосулек', 'сброс снега с крыши',
+              'ручная уборка снега с крыш', 'аварийная очистка крыш от снега'
+            ].map((tag, index) => (
+              <span key={index} className="px-3 py-1 bg-primary/10 text-muted-foreground rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
