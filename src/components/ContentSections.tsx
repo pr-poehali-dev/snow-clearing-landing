@@ -131,7 +131,6 @@ const ContentSections = () => {
                 src="https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg"
                 alt="Профессиональная очистка крыш"
                 className="rounded-2xl shadow-xl hover-scale"
-                style={{ transform: `translateY(${scrollY * 0.15}px)` }}
               />
             </div>
             <div>
