@@ -37,10 +37,10 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground relative">
       <div className="fixed right-12 top-0 z-40 hidden lg:block pointer-events-none">
         <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-gray-600 via-gray-500 to-transparent"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-gray-700 via-gray-600 to-transparent"
           style={{ 
-            height: `${Math.min(scrollProgress * 8, 100)}vh`,
-            boxShadow: '0 0 8px rgba(0,0,0,0.3)'
+            height: `${Math.min(scrollProgress * 8 + 20, 100)}vh`,
+            boxShadow: '0 0 10px rgba(0,0,0,0.4)'
           }}
         ></div>
         <div 
@@ -50,13 +50,14 @@ const Index = () => {
             opacity: scrollProgress < 95 ? 1 : 0,
             animationDuration: '4s',
             transformOrigin: 'top center',
-            marginTop: '80px'
+            marginTop: '60px',
+            marginLeft: '-20px'
           }}
         >
           <img 
-            src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/d78bb339-2baa-4a00-880d-d1f7d41a15d1.jpg"
-            alt="Альпинист"
-            className="w-16 h-16 object-contain drop-shadow-lg rounded-full bg-white/90 p-2"
+            src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/0b12ba08-c1d7-4012-bb63-0d589915a802.jpg"
+            alt="Альпинист спускается"
+            className="w-24 h-24 object-contain drop-shadow-2xl"
           />
         </div>
       </div>
