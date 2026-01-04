@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import FloatingContact from '@/components/FloatingContact';
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -300,6 +301,8 @@ const Index = () => {
           <p>&copy; 2026 Дюльфер.рф — Профессиональная чистка крыш в Москве и МО</p>
         </div>
       </footer>
+
+      <FloatingContact />
     </div>
   );
 };
