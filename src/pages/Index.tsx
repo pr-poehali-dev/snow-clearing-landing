@@ -247,66 +247,6 @@ const Index = () => {
       </section>
 
       <section className="py-20 px-4 bg-card/50">
-        <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наши Работы</h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">Примеры выполненных объектов</p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            {[
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg',
-                title: 'Очистка кровли ТЦ',
-                description: 'Торговый центр, 1200 м²'
-              },
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg',
-                title: 'Удаление наледи',
-                description: 'Жилой комплекс, 850 м²'
-              },
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg',
-                title: 'Работа на высоте',
-                description: 'Офисное здание, 600 м²'
-              },
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg',
-                title: 'Промышленный объект',
-                description: 'Склад, 2000 м²'
-              },
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg',
-                title: 'Многоквартирный дом',
-                description: 'Жилой дом, 450 м²'
-              },
-              {
-                image: 'https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg',
-                title: 'Бизнес-центр',
-                description: 'Офисное здание, 950 м²'
-              }
-            ].map((project, index) => (
-              <Card key={index} className="overflow-hidden hover-scale group">
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4 text-white">
-                        <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                        <p className="text-sm text-gray-200">{project.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Часто Задаваемые Вопросы</h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">Ответы на популярные вопросы наших клиентов</p>
