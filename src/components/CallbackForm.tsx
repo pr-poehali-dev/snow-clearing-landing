@@ -12,6 +12,7 @@ const CallbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '');
@@ -35,10 +36,21 @@ const CallbackForm = () => {
     return formatted;
   };
 
+  const isPhoneValid = (phoneValue: string): boolean => {
+    const cleaned = phoneValue.replace(/\D/g, '');
+    return cleaned.length === 11;
+  };
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const formatted = formatPhoneNumber(value);
     setPhone(formatted);
+    
+    if (formatted && !isPhoneValid(formatted)) {
+      setPhoneError('Введите полный номер телефона');
+    } else {
+      setPhoneError('');
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +67,15 @@ const CallbackForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isPhoneValid(phone)) {
+      setPhoneError('Введите полный номер телефона');
+      return;
+    }
+    
     setIsSubmitting(true);
     setError('');
+    setPhoneError('');
 
     try {
       let fileBase64 = '';
@@ -147,9 +166,12 @@ const CallbackForm = () => {
           value={phone}
           onChange={handlePhoneChange}
           required
-          className="h-12 text-lg"
+          className={`h-12 text-lg ${phoneError ? 'border-red-500 focus:ring-red-500' : ''}`}
           maxLength={18}
         />
+        {phoneError && (
+          <p className="text-red-600 text-sm mt-1">{phoneError}</p>
+        )}
       </div>
 
       <div>
@@ -201,8 +223,8 @@ const CallbackForm = () => {
       <Button
         type="submit"
         size="lg"
-        disabled={isSubmitting}
-        className="w-full bg-primary hover:bg-primary/90 h-12 text-lg"
+        disabled={isSubmitting || !isPhoneValid(phone)}
+        className="w-full bg-primary hover:bg-primary/90 h-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
           <>
