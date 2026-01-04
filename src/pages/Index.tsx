@@ -151,7 +151,6 @@ const Index = () => {
               <div className="space-y-4">
                 {[
                   { icon: 'Award', text: 'Лицензия на высотные работы' },
-                  { icon: 'ShieldCheck', text: 'Страхование ответственности до 5 млн ₽' },
                   { icon: 'UserCheck', text: 'Аттестованные специалисты' },
                   { icon: 'FileCheck', text: 'Договор и гарантия на все работы' }
                 ].map((item, index) => (
