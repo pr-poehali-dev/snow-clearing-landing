@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ContentSections from '@/components/ContentSections';
 import FloatingContact from '@/components/FloatingContact';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -54,6 +55,7 @@ const Index = () => {
       <HeroSection />
       <ContentSections />
       <FloatingContact shouldBlink={isClimberAtBottom} />
+      <ScrollToTop />
     </div>
   );
 };
