@@ -167,30 +167,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="advantages" className="py-20 px-4 bg-card/50">
-        <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Почему выбирают нас</h2>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { number: '10+', label: 'лет опыта', icon: 'TrendingUp' },
-              { number: '500+', label: 'объектов обслужено', icon: 'Building2' },
-              { number: '98%', label: 'довольных клиентов', icon: 'ThumbsUp' },
-              { number: '24/7', label: 'круглосуточно', icon: 'Clock' }
-            ].map((stat, index) => (
-              <Card key={index} className="text-center hover-scale hover:border-primary/50 transition-all bg-card">
-                <CardContent className="p-8">
-                  <Icon name={stat.icon} size={40} className="text-primary mx-auto mb-4" />
-                  <div className="text-5xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="reviews" className="py-20 px-4">
+      <section id="reviews" className="py-20 px-4 bg-card/50">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Отзывы клиентов</h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">Реальные истории наших клиентов</p>
@@ -305,7 +282,7 @@ const Index = () => {
                       <Icon name="Globe" size={24} className="text-primary" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground">Портфолио</div>
+                      <div className="text-sm text-muted-foreground">Сайт</div>
                       <a href="https://дюльфер.рф" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary transition">дюльфер.рф</a>
                     </div>
                   </div>
