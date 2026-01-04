@@ -22,7 +22,7 @@ const Index = () => {
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="#" className="text-2xl font-bold text-primary hover:text-primary/80 transition">
-            <img src="https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg" alt="Дюльфер.рф" className="h-12 w-auto" />
+            <img src="https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/5cabcbce-0507-4946-82db-284646f5b98e.jpg" alt="Дюльфер.рф" className="h-12 w-auto rounded-lg" style={{filter: 'brightness(1.1) contrast(1.1)'}} />
           </a>
           <nav className="hidden md:flex gap-6">
             <a href="#services" className="story-link hover:text-primary transition">Услуги</a>
@@ -55,14 +55,18 @@ const Index = () => {
                 Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 hover-scale">
-                  <Icon name="Calendar" size={20} className="mr-2" />
-                  Заказать выезд
-                </Button>
-                <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 text-lg px-8">
-                  <Icon name="Calculator" size={20} className="mr-2" />
-                  Рассчитать стоимость
-                </Button>
+                <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 hover-scale w-full">
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Написать в Telegram
+                  </Button>
+                </a>
+                <a href="tel:+79339277797">
+                  <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 text-lg px-8 w-full">
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    Позвонить сейчас
+                  </Button>
+                </a>
               </div>
             </div>
             <div className="relative animate-scale-in">
@@ -72,8 +76,8 @@ const Index = () => {
                 className="rounded-2xl shadow-2xl hover-scale"
               />
               <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-xl">
-                <div className="text-4xl font-bold">24/7</div>
-                <div className="text-sm">Работаем круглосуточно</div>
+                <div className="text-2xl font-bold mb-1">Оперативный</div>
+                <div className="text-3xl font-bold">Выезд</div>
               </div>
             </div>
           </div>
@@ -245,50 +249,47 @@ const Index = () => {
           
           <Card className="bg-card">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block mb-2 font-medium">Ваше имя</label>
-                  <Input 
-                    placeholder="Иван Иванов"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="bg-background"
-                  />
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <p className="text-lg mb-4">Выберите удобный способ связи:</p>
                 </div>
-                <div>
-                  <label className="block mb-2 font-medium">Телефон</label>
-                  <Input 
-                    placeholder="+7 (999) 123-45-67"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="bg-background"
-                  />
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="block">
+                    <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-lg h-20">
+                      <Icon name="Send" size={24} className="mr-3" />
+                      <div className="text-left">
+                        <div className="font-bold">Telegram</div>
+                        <div className="text-sm opacity-90">@dulfer161</div>
+                      </div>
+                    </Button>
+                  </a>
+                  
+                  <a href="tel:+79339277797" className="block">
+                    <Button size="lg" variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 text-lg h-20">
+                      <Icon name="Phone" size={24} className="mr-3" />
+                      <div className="text-left">
+                        <div className="font-bold">Позвонить</div>
+                        <div className="text-sm">+7 (933) 927-77-97</div>
+                      </div>
+                    </Button>
+                  </a>
                 </div>
-                <div>
-                  <label className="block mb-2 font-medium">Сообщение</label>
-                  <Textarea 
-                    placeholder="Опишите вашу задачу..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={4}
-                    className="bg-background"
-                  />
+                
+                <div className="text-center pt-4">
+                  <p className="text-muted-foreground">Также доступна связь через MAX</p>
                 </div>
-                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-lg">
-                  <Icon name="Send" size={20} className="mr-2" />
-                  Отправить заявку
-                </Button>
-              </form>
+              </div>
               
               <div className="mt-8 pt-8 border-t border-border">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Icon name="Phone" size={24} className="text-primary" />
+                      <Icon name="Send" size={24} className="text-primary" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground">Телефон</div>
-                      <a href="tel:+79339277797" className="font-bold text-lg hover:text-primary transition">+7 (933) 927-77-97</a>
+                      <div className="text-sm text-muted-foreground">Telegram</div>
+                      <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary transition">@dulfer161</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -297,7 +298,7 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Email</div>
-                      <a href="mailto:dulfer161@yandex.ru" className="font-bold text-lg hover:text-secondary transition">dulfer161@yandex.ru</a>
+                      <a href="mailto:dulfer161@yandex.ru" className="font-bold hover:text-secondary transition">dulfer161@yandex.ru</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -306,7 +307,7 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Портфолио</div>
-                      <a href="https://дюльфер.рф" target="_blank" rel="noopener noreferrer" className="font-bold text-lg hover:text-primary transition">дюльфер.рф</a>
+                      <a href="https://дюльфер.рф" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary transition">дюльфер.рф</a>
                     </div>
                   </div>
                 </div>
@@ -316,26 +317,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 bg-card/30">
-        <div className="container mx-auto">
-          <h3 className="text-2xl font-bold text-center mb-8">Мы специализируемся на</h3>
-          <div className="flex flex-wrap justify-center gap-3 text-sm">
-            {[
-              'очистка крыш от снега', 'уборка снега с крыши', 'удаление наледи с крыш',
-              'сбить сосульки с крыши', 'чистка кровли от снега', 'уборка снега с кровли',
-              'очистка крыш', 'уборка снега', 'очистка кровли от снега и наледи',
-              'уборка снега и сосулек с крыш', 'чистка крыши от наледи', 'удаление сосулек',
-              'услуги по уборке снега с крыш', 'промышленный альпинизм очистка крыш',
-              'очистка крыш альпинистами', 'сбивание сосулек', 'сброс снега с крыши',
-              'ручная уборка снега с крыш', 'аварийная очистка крыш от снега'
-            ].map((tag, index) => (
-              <span key={index} className="px-3 py-1 bg-primary/10 text-muted-foreground rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center text-muted-foreground">
