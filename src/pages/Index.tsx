@@ -5,7 +5,6 @@ import HeroSection from '@/components/HeroSection';
 import ContentSections from '@/components/ContentSections';
 import FloatingContact from '@/components/FloatingContact';
 import ScrollToTop from '@/components/ScrollToTop';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -53,7 +52,6 @@ const Index = () => {
         isClimberAtBottom={isClimberAtBottom} 
       />
       <Header />
-      <ThemeToggle />
       <HeroSection />
       <ContentSections />
       <FloatingContact shouldBlink={isClimberAtBottom} />
