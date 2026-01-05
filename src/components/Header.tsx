@@ -6,7 +6,7 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="#" className="flex items-center gap-2 hover:opacity-80 transition">
-          <img src="https://cdn.poehali.dev/files/IMG_20260104_233309_679.jpg" alt="Дюльфер.рф" className="h-10 w-auto" />
+          <img src="https://cdn.poehali.dev/files/Оранжевый (1).png" alt="Дюльфер.рф" className="h-10 w-auto" />
           <div className="text-base sm:text-lg font-bold text-primary">Дюльфер.рф</div>
         </a>
         <a href="tel:+79339277797" className="md:hidden">
