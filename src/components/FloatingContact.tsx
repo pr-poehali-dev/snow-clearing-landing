@@ -42,18 +42,9 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
     }
   };
 
-  const trackMax = () => {
+  const trackWhatsApp = () => {
     if (window.ym) {
-      window.ym(101026698, 'reachGoal', 'max_click');
-    }
-  };
-
-  const openMaxWidget = () => {
-    if (isMaxReady) {
-      trackMax();
-      window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
-    } else {
-      alert('Виджет загружается, попробуйте через пару секунд');
+      window.ym(101026698, 'reachGoal', 'whatsapp_click');
     }
   };
 
@@ -79,24 +70,15 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
               Позвонить
             </Button>
           </a>
-          <Button 
-            size="default"
-            onClick={openMaxWidget}
-            disabled={!isMaxReady}
-            className="bg-secondary hover:bg-secondary/90 shadow-lg w-full disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base h-10 sm:h-11"
-          >
-            {isMaxReady ? (
-              <>
-                <Icon name="MessagesSquare" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
-                MAX
-              </>
-            ) : (
-              <>
-                <Icon name="Loader2" size={16} className="mr-1.5 sm:mr-2 animate-spin sm:w-5 sm:h-5" />
-                Загрузка...
-              </>
-            )}
-          </Button>
+          <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" onClick={trackWhatsApp}>
+            <Button 
+              size="default"
+              className="bg-[#25D366] hover:bg-[#25D366]/90 text-white shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
+            >
+              <Icon name="MessageCircle" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
+              WhatsApp
+            </Button>
+          </a>
         </div>
       )}
       

@@ -25,6 +25,12 @@ const ContentSections = () => {
     }
   };
 
+  const trackWhatsApp = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'whatsapp_click');
+    }
+  };
+
   return (
     <>
       <section className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
@@ -317,13 +323,23 @@ const ContentSections = () => {
                   <p className="text-base sm:text-lg mb-3 md:mb-4">Выберите удобный способ связи:</p>
                 </div>
                 
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                   <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
                     <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Send" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">
                         <div className="font-bold">Telegram</div>
                         <div className="text-xs sm:text-sm opacity-90">@Dulfer8</div>
+                      </div>
+                    </Button>
+                  </a>
+                  
+                  <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" className="block" onClick={trackWhatsApp}>
+                    <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white text-base sm:text-lg h-16 sm:h-20">
+                      <Icon name="MessageCircle" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
+                      <div className="text-left">
+                        <div className="font-bold">WhatsApp</div>
+                        <div className="text-xs sm:text-sm opacity-90">+7 (933) 927-77-97</div>
                       </div>
                     </Button>
                   </a>
@@ -340,14 +356,14 @@ const ContentSections = () => {
                 </div>
                 
                 <div className="text-center pt-3 pb-4 sm:pt-4 sm:pb-6 border-b border-border">
-                  <p className="text-sm sm:text-base text-muted-foreground">Также доступна связь через MAX</p>
+                  <p className="text-sm sm:text-base text-muted-foreground">Или оставьте заявку ниже</p>
                 </div>
 
                 <CallbackForm />
               </div>
               
               <div className="mt-6 pt-6 sm:mt-8 sm:pt-8 border-t border-border">
-                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Icon name="Send" size={20} className="text-primary sm:w-6 sm:h-6" />
@@ -355,6 +371,15 @@ const ContentSections = () => {
                     <div>
                       <div className="text-xs sm:text-sm text-muted-foreground">Telegram</div>
                       <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-primary transition">@Dulfer8</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#25D366]/10 rounded-full flex items-center justify-center">
+                      <Icon name="MessageCircle" size={20} className="text-[#25D366] sm:w-6 sm:h-6" />
+                    </div>
+                    <div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">WhatsApp</div>
+                      <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-[#25D366] transition">+7 933 927-77-97</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3">
