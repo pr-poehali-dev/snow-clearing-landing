@@ -2,6 +2,18 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const HeroSection = () => {
+  const trackTelegram = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'telegram_click');
+    }
+  };
+
+  const trackPhone = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'phone_click');
+    }
+  };
+
   return (
     <section className="pt-16 sm:pt-20 pb-6 sm:pb-8 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
       <div className="container mx-auto text-center">
@@ -12,13 +24,13 @@ const HeroSection = () => {
           Очистка крыш от снега и наледи в Москве и Ближнем Подмосковье
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-4">
-          <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+          <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto" onClick={trackTelegram}>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
               <Icon name="Send" size={20} className="mr-2" />
               Telegram
             </Button>
           </a>
-          <a href="tel:+79339277797" className="w-full sm:w-auto">
+          <a href="tel:+79339277797" className="w-full sm:w-auto" onClick={trackPhone}>
             <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 w-full">
               <Icon name="Phone" size={20} className="mr-2" />
               Позвонить

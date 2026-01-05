@@ -13,6 +13,18 @@ const ContentSections = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const trackTelegram = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'telegram_click');
+    }
+  };
+
+  const trackPhone = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'phone_click');
+    }
+  };
+
   return (
     <>
       <section className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
@@ -306,7 +318,7 @@ const ContentSections = () => {
                 </div>
                 
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="block">
+                  <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
                     <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Send" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">
@@ -316,7 +328,7 @@ const ContentSections = () => {
                     </Button>
                   </a>
                   
-                  <a href="tel:+79339277797" className="block">
+                  <a href="tel:+79339277797" className="block" onClick={trackPhone}>
                     <Button size="lg" variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Phone" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">

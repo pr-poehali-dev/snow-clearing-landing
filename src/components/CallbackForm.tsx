@@ -111,6 +111,11 @@ const CallbackForm = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Отправка цели в Яндекс.Метрику
+        if (window.ym) {
+          window.ym(101026698, 'reachGoal', 'form_submit');
+        }
+        
         setIsSuccess(true);
         setName('');
         setPhone('');
