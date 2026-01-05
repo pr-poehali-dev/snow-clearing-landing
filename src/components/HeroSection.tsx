@@ -17,13 +17,13 @@ const HeroSection = () => {
   return (
     <section className="pt-16 sm:pt-20 pb-6 sm:pb-8 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
       <div className="container mx-auto text-center">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-montserrat font-black mb-3 sm:mb-4 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent px-2">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-montserrat font-black mb-3 sm:mb-4 leading-tight tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent px-2 opacity-0 animate-[slideInDown_0.8s_ease-out_0.1s_forwards]">
           Быстрый Спуск к Решению Вашей Проблемы!
         </h1>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground font-semibold mb-2 sm:mb-3 px-2">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground font-semibold mb-2 sm:mb-3 px-2 opacity-0 animate-[slideInDown_0.8s_ease-out_0.3s_forwards]">
           Очистка крыш от снега и наледи в Москве и Ближнем Подмосковье
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-4">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-4 opacity-0 animate-[slideInUp_0.8s_ease-out_0.5s_forwards]">
           <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto" onClick={trackTelegram}>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
               <Icon name="Send" size={20} className="mr-2" />
@@ -37,7 +37,7 @@ const HeroSection = () => {
             </Button>
           </a>
         </div>
-        <p className="text-sm sm:text-base md:text-lg text-primary font-bold mt-3 sm:mt-4 px-2">
+        <p className="text-sm sm:text-base md:text-lg text-primary font-bold mt-3 sm:mt-4 px-2 opacity-0 animate-[slideInUp_0.8s_ease-out_0.7s_forwards]">
           Безопасность и Порядок на Вашей Кровле – Наша Профессия!
         </p>
       </div>

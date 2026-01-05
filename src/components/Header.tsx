@@ -19,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border opacity-0 animate-[slideInDown_0.6s_ease-out_forwards]">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="#" className="flex items-center gap-2 hover:opacity-80 transition">
           <img src="https://cdn.poehali.dev/files/Оранжевый (1).png" alt="Дюльфер.рф" className="h-10 w-auto" />

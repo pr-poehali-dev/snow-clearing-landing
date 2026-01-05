@@ -101,7 +101,7 @@ const ContentSections = () => {
                 price: 'от 200 ₽/м²'
               }
             ].map((service, index) => (
-              <Card key={index} className="hover-scale hover:border-primary/50 transition-all duration-300 bg-card">
+              <Card key={index} className="hover-scale hover:border-primary/50 transition-all duration-300 bg-card opacity-0 animate-[scaleIn_0.8s_ease-out_forwards]" style={{ animationDelay: `${0.8 + index * 0.2}s` }}>
                 <CardContent className="p-4 sm:p-5 md:p-6">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mb-3 md:mb-4">
                     <Icon name={service.icon} size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
