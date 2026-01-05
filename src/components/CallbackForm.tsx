@@ -129,12 +129,12 @@ const CallbackForm = () => {
 
   if (isSuccess) {
     return (
-      <div className="text-center py-8">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Icon name="CheckCircle2" size={32} className="text-green-600" />
+      <div className="text-center py-6 sm:py-8">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+          <Icon name="CheckCircle2" size={28} className="text-green-600 sm:w-8 sm:h-8" />
         </div>
-        <h3 className="text-2xl font-bold mb-2">Заявка отправлена!</h3>
-        <p className="text-muted-foreground">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2">Заявка отправлена!</h3>
+        <p className="text-sm sm:text-base text-muted-foreground">
           Мы свяжемся с вами в течение 15 минут
         </p>
       </div>
@@ -142,10 +142,10 @@ const CallbackForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="text-center mb-6">
-        <p className="text-lg">Или оставьте свои контакты:</p>
-        <p className="text-sm text-muted-foreground mt-1">Мы перезвоним в течение 15 минут</p>
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+      <div className="text-center mb-4 sm:mb-6">
+        <p className="text-base sm:text-lg">Или оставьте свои контакты:</p>
+        <p className="text-xs sm:text-sm text-muted-foreground mt-1">Мы перезвоним в течение 15 минут</p>
       </div>
       
       <div>
@@ -155,7 +155,7 @@ const CallbackForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="h-12 text-lg"
+          className="h-11 sm:h-12 text-base sm:text-lg"
         />
       </div>
       
@@ -166,7 +166,7 @@ const CallbackForm = () => {
           value={phone}
           onChange={handlePhoneChange}
           required
-          className={`h-12 text-lg ${phoneError ? 'border-red-500 focus:ring-red-500' : ''}`}
+          className={`h-11 sm:h-12 text-base sm:text-lg ${phoneError ? 'border-red-500 focus:ring-red-500' : ''}`}
           maxLength={18}
         />
         {phoneError && (
@@ -180,14 +180,14 @@ const CallbackForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-          className="min-h-32 text-lg resize-none"
+          className="min-h-28 sm:min-h-32 text-base sm:text-lg resize-none"
         />
       </div>
 
       <div>
-        <label className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6 cursor-pointer hover:border-primary transition-colors">
-          <Icon name="Upload" size={32} className="text-muted-foreground mb-2" />
-          <span className="text-sm text-muted-foreground text-center">
+        <label className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-4 sm:p-6 cursor-pointer hover:border-primary transition-colors">
+          <Icon name="Upload" size={28} className="text-muted-foreground mb-2 sm:w-8 sm:h-8" />
+          <span className="text-xs sm:text-sm text-muted-foreground text-center">
             {file ? file.name : 'Прикрепить фото или проект объекта (необязательно)'}
           </span>
           <span className="text-xs text-muted-foreground mt-1">Максимум 10 МБ</span>
@@ -224,7 +224,7 @@ const CallbackForm = () => {
         type="submit"
         size="lg"
         disabled={isSubmitting || !isPhoneValid(phone)}
-        className="w-full bg-primary hover:bg-primary/90 h-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-primary hover:bg-primary/90 h-11 sm:h-12 text-base sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
           <>

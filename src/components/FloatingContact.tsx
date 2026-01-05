@@ -39,41 +39,41 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 sm:gap-3">
       {isOpen && (
         <div className="animate-scale-in flex flex-col gap-2">
           <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer">
             <Button 
-              size="lg" 
-              className="bg-[#0088cc] hover:bg-[#0088cc]/90 text-white shadow-lg w-full"
+              size="default"
+              className="bg-[#0088cc] hover:bg-[#0088cc]/90 text-white shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
             >
-              <Icon name="Send" size={20} className="mr-2" />
+              <Icon name="Send" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
               Telegram
             </Button>
           </a>
           <a href="tel:+79339277797">
             <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 shadow-lg w-full"
+              size="default"
+              className="bg-primary hover:bg-primary/90 shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
             >
-              <Icon name="Phone" size={20} className="mr-2" />
+              <Icon name="Phone" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
               Позвонить
             </Button>
           </a>
           <Button 
-            size="lg" 
+            size="default"
             onClick={openMaxWidget}
             disabled={!isMaxReady}
-            className="bg-secondary hover:bg-secondary/90 shadow-lg w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-secondary hover:bg-secondary/90 shadow-lg w-full disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base h-10 sm:h-11"
           >
             {isMaxReady ? (
               <>
-                <Icon name="MessagesSquare" size={20} className="mr-2" />
+                <Icon name="MessagesSquare" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
                 MAX
               </>
             ) : (
               <>
-                <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                <Icon name="Loader2" size={16} className="mr-1.5 sm:mr-2 animate-spin sm:w-5 sm:h-5" />
                 Загрузка...
               </>
             )}
@@ -82,16 +82,16 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
       )}
       
       <Button
-        size="lg"
+        size="default"
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-primary hover:bg-primary/90 shadow-xl rounded-full w-14 h-14 p-0 ${
+        className={`bg-primary hover:bg-primary/90 shadow-xl rounded-full w-12 h-12 sm:w-14 sm:h-14 p-0 ${
           shouldBlink ? 'animate-call-attention' : 'transition-all'
         }`}
         style={shouldBlink ? {
           filter: 'brightness(1.3) drop-shadow(0 0 20px rgba(251, 146, 60, 0.8))'
         } : undefined}
       >
-        <Icon name={isOpen ? "X" : "MessageCircle"} size={24} />
+        <Icon name={isOpen ? "X" : "MessageCircle"} size={20} className="sm:w-6 sm:h-6" />
       </Button>
     </div>
   );

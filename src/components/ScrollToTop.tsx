@@ -24,13 +24,13 @@ const ScrollToTop = () => {
   return (
     <Button
       onClick={scrollToTop}
-      size="lg"
-      className={`fixed bottom-24 left-6 z-40 bg-secondary hover:bg-secondary/90 shadow-xl rounded-full w-14 h-14 p-0 transition-all duration-300 ${
+      size="default"
+      className={`fixed bottom-20 left-4 sm:bottom-24 sm:left-6 z-40 bg-secondary hover:bg-secondary/90 shadow-xl rounded-full w-12 h-12 sm:w-14 sm:h-14 p-0 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
       aria-label="Прокрутить наверх"
     >
-      <Icon name="ArrowUp" size={24} />
+      <Icon name="ArrowUp" size={20} className="sm:w-6 sm:h-6" />
     </Button>
   );
 };
