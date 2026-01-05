@@ -24,7 +24,7 @@ const HeroSection = () => {
           Очистка крыш от снега и наледи в Москве и Ближнем Подмосковье
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-4">
-          <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto" onClick={trackTelegram}>
+          <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto" onClick={trackTelegram}>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full">
               <Icon name="Send" size={20} className="mr-2" />
               Telegram

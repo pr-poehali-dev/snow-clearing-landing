@@ -61,7 +61,7 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 sm:gap-3">
       {isOpen && (
         <div className="animate-scale-in flex flex-col gap-2">
-          <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" onClick={trackTelegram}>
+          <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" onClick={trackTelegram}>
             <Button 
               size="default"
               className="bg-[#0088cc] hover:bg-[#0088cc]/90 text-white shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"

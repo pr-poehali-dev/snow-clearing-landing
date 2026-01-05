@@ -318,12 +318,12 @@ const ContentSections = () => {
                 </div>
                 
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
+                  <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
                     <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Send" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">
                         <div className="font-bold">Telegram</div>
-                        <div className="text-xs sm:text-sm opacity-90">@dulfer161</div>
+                        <div className="text-xs sm:text-sm opacity-90">@Dulfer8</div>
                       </div>
                     </Button>
                   </a>
@@ -354,7 +354,7 @@ const ContentSections = () => {
                     </div>
                     <div>
                       <div className="text-xs sm:text-sm text-muted-foreground">Telegram</div>
-                      <a href="https://t.me/dulfer161" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-primary transition">@dulfer161</a>
+                      <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-primary transition">@Dulfer8</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3">
