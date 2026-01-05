@@ -57,10 +57,10 @@ def handler(event: dict, context) -> dict:
             }
         
         email_to = os.environ.get('EMAIL_TO', 'dulfer161@yandex.ru')
-        email_from = os.environ.get('EMAIL_FROM', 'noreply@dulfer.rf')
+        email_from = os.environ.get('EMAIL_FROM', 'dulfer161@yandex.ru')
         smtp_host = os.environ.get('SMTP_HOST', 'smtp.yandex.ru')
         smtp_port = int(os.environ.get('SMTP_PORT', '587'))
-        smtp_user = os.environ.get('SMTP_USER', '')
+        smtp_user = os.environ.get('SMTP_USER', 'dulfer161@yandex.ru')
         smtp_password = os.environ.get('SMTP_PASSWORD', '')
         
         msg = MIMEMultipart()
@@ -96,21 +96,21 @@ def handler(event: dict, context) -> dict:
             except Exception as e:
                 print(f'Ошибка прикрепления файла: {str(e)}')
         
-        if smtp_user and smtp_password:
-            with smtplib.SMTP(smtp_host, smtp_port) as server:
-                server.starttls()
-                server.login(smtp_user, smtp_password)
-                server.send_message(msg)
-        else:
+        if not smtp_password:
             return {
                 'statusCode': 500,
                 'headers': {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': json.dumps({'error': 'SMTP не настроен. Обратитесь к администратору.'}),
+                'body': json.dumps({'error': 'SMTP пароль не настроен. Добавьте SMTP_PASSWORD в секреты проекта.'}),
                 'isBase64Encoded': False
             }
+        
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_password)
+            server.send_message(msg)
         
         return {
             'statusCode': 200,
