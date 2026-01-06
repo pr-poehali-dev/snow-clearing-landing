@@ -31,6 +31,18 @@ const ContentSections = () => {
     }
   };
 
+  const trackServiceClick = (serviceName: string) => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'service_view', { service: serviceName });
+    }
+  };
+
+  const trackScrollToContacts = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'scroll_to_contacts');
+    }
+  };
+
   return (
     <>
       <section className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">

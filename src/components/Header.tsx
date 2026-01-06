@@ -16,6 +16,16 @@ const Header = () => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'theme_toggle');
+    }
+  };
+
+  const trackPhoneClick = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'phone_header_click');
+    }
   };
 
   return (
@@ -56,12 +66,12 @@ const Header = () => {
             </div>
           </Button>
 
-          <a href="tel:+79339277797" className="md:hidden">
+          <a href="tel:+79339277797" className="md:hidden" onClick={trackPhoneClick}>
             <Button size="sm" className="bg-primary hover:bg-primary/90">
               <Icon name="Phone" size={16} />
             </Button>
           </a>
-          <a href="tel:+79339277797" className="hidden md:block">
+          <a href="tel:+79339277797" className="hidden md:block" onClick={trackPhoneClick}>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Icon name="Phone" size={16} className="mr-2" />
               +7 (933) 927-77-97
