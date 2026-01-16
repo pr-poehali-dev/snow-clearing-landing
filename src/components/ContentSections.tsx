@@ -60,7 +60,7 @@ const ContentSections = () => {
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
                 Не дайте снегу и сосулькам создать проблемы! Компания Дюльфер РФ предлагает профессиональные услуги по очистке кровель и удалению наледи методом промышленного альпинизма. Мы гарантируем безопасность, оперативность и сохранность вашего имущества.
               </p>
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
                 <div className="text-center p-3 md:p-4 bg-card rounded-lg">
                   <div className="text-2xl md:text-3xl font-bold text-primary mb-1">10+</div>
                   <div className="text-xs sm:text-sm text-muted-foreground">лет опыта</div>
@@ -70,6 +70,12 @@ const ContentSections = () => {
                   <div className="text-xs sm:text-sm text-muted-foreground">объектов</div>
                 </div>
               </div>
+              <a href="#gallery">
+                <Button className="w-full md:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                  <Icon name="Images" size={20} className="mr-2" />
+                  Все фотографии работ
+                </Button>
+              </a>
             </div>
             <div className="relative animate-scale-in mt-6 md:mt-0">
               <img 
