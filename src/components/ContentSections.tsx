@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import CallbackForm from '@/components/CallbackForm';
+import PhotoGallery from '@/components/PhotoGallery';
 
 const ContentSections = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -134,6 +135,8 @@ const ContentSections = () => {
           </div>
         </div>
       </section>
+
+      <PhotoGallery />
 
       <section id="safety" className="py-12 sm:py-16 md:py-20 px-4">
         <div className="container mx-auto">
