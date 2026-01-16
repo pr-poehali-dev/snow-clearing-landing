@@ -8,10 +8,55 @@ const QuickCallbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const formatPhoneNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    
+    if (cleaned.length === 0) return '';
+    
+    let formatted = '+7';
+    
+    if (cleaned.length > 1) {
+      const part1 = cleaned.substring(1, 4);
+      formatted += ` (${part1}`;
+      
+      if (cleaned.length >= 4) {
+        formatted += ')';
+      }
+      
+      if (cleaned.length > 4) {
+        const part2 = cleaned.substring(4, 7);
+        formatted += ` ${part2}`;
+      }
+      
+      if (cleaned.length > 7) {
+        const part3 = cleaned.substring(7, 9);
+        formatted += `-${part3}`;
+      }
+      
+      if (cleaned.length > 9) {
+        const part4 = cleaned.substring(9, 11);
+        formatted += `-${part4}`;
+      }
+    }
+    
+    return formatted;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    const cleaned = input.replace(/\D/g, '');
+    
+    if (cleaned.length <= 11) {
+      const formatted = formatPhoneNumber(input);
+      setPhone(formatted);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!phone || phone.length < 10) {
+    const cleaned = phone.replace(/\D/g, '');
+    if (!phone || cleaned.length < 11) {
       alert('Пожалуйста, введите корректный номер телефона');
       return;
     }
@@ -72,7 +117,7 @@ const QuickCallbackForm = () => {
           type="tel"
           placeholder="+7 (___) ___-__-__"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={handlePhoneChange}
           className="flex-1 h-12 text-base"
           disabled={isSubmitting}
           required
