@@ -37,7 +37,7 @@ const SocialProof = () => {
 
   return (
     <div 
-      className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 animate-fade-in"
+      className="fixed bottom-20 sm:bottom-24 left-4 z-40 animate-fade-in"
       style={{ animationDelay: '0.5s' }}
     >
       <div className="bg-card border-2 border-primary/30 rounded-lg shadow-xl p-3 sm:p-4 max-w-[200px] hover:scale-105 transition-transform">
