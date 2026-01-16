@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 
 const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
     {
@@ -24,6 +25,26 @@ const PhotoGallery = () => {
     {
       url: 'https://cdn.poehali.dev/files/5429472664201399358.jpg',
       alt: 'Ночная работа по очистке козырька от снега'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399359.jpg',
+      alt: 'Альпинист в желтой экипировке на склоне крыши'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399360.jpg',
+      alt: 'Сброс снега с крыши'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399363.jpg',
+      alt: 'Команда альпинистов на красной кровле'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399365.jpg',
+      alt: 'Селфи альпиниста на работе'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399364.jpg',
+      alt: 'Работа на скатной крыше'
     },
     {
       url: 'https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg',
@@ -55,6 +76,21 @@ const PhotoGallery = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
+  const toggleZoom = () => {
+    setIsZoomed(!isZoomed);
+  };
+
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isZoomed]);
+
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 bg-card/30">
       <div className="container mx-auto">
@@ -73,7 +109,8 @@ const PhotoGallery = () => {
                   <img
                     src={image.url}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover cursor-zoom-in"
+                    onClick={toggleZoom}
                   />
                 </div>
               ))}
@@ -112,6 +149,50 @@ const PhotoGallery = () => {
           </div>
         </div>
       </div>
+
+      {isZoomed && (
+        <div 
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={toggleZoom}
+        >
+          <button
+            className="absolute top-4 right-4 bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all z-10"
+            onClick={toggleZoom}
+            aria-label="Закрыть"
+          >
+            <Icon name="X" size={24} />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prevSlide();
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all"
+            aria-label="Предыдущее фото"
+          >
+            <Icon name="ChevronLeft" size={32} />
+          </button>
+
+          <img
+            src={images[currentIndex].url}
+            alt={images[currentIndex].alt}
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              nextSlide();
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all"
+            aria-label="Следующее фото"
+          >
+            <Icon name="ChevronRight" size={32} />
+          </button>
+        </div>
+      )}
     </section>
   );
 };
