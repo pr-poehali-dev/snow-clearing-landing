@@ -355,12 +355,12 @@ const ContentSections = () => {
                     </Button>
                   </a>
                   
-                  <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" className="block" onClick={trackWhatsApp}>
+                  <a href="https://wa.me/79094355525" target="_blank" rel="noopener noreferrer" className="block" onClick={trackWhatsApp}>
                     <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="MessageCircle" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">
                         <div className="font-bold">WhatsApp</div>
-                        <div className="text-xs sm:text-sm opacity-90">+7 (933) 927-77-97</div>
+                        <div className="text-xs sm:text-sm opacity-90">+7 (909) 435-55-25</div>
                       </div>
                     </Button>
                   </a>
@@ -400,7 +400,7 @@ const ContentSections = () => {
                     </div>
                     <div>
                       <div className="text-xs sm:text-sm text-muted-foreground">WhatsApp</div>
-                      <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-[#25D366] transition">+7 933 927-77-97</a>
+                      <a href="https://wa.me/79094355525" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold hover:text-[#25D366] transition">+7 909 435-55-25</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3">

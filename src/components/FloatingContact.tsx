@@ -61,7 +61,7 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
               Telegram
             </Button>
           </a>
-          <a href="tel:+79339277797" onClick={trackPhone}>
+          <a href="tel:+79094355525" onClick={trackPhone}>
             <Button 
               size="default"
               className="bg-primary hover:bg-primary/90 shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
@@ -70,7 +70,7 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
               Позвонить
             </Button>
           </a>
-          <a href="https://wa.me/79339277797" target="_blank" rel="noopener noreferrer" onClick={trackWhatsApp}>
+          <a href="https://wa.me/79094355525" target="_blank" rel="noopener noreferrer" onClick={trackWhatsApp}>
             <Button 
               size="default"
               className="bg-[#25D366] hover:bg-[#25D366]/90 text-white shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
