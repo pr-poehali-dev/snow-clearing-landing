@@ -388,15 +388,13 @@ const ContentSections = () => {
                     </Button>
                   </a>
                   
-                  <button type="button" className="block w-full" onClick={openMaxForm}>
-                    <Button size="lg" className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg h-16 sm:h-20">
-                      <Icon name="FileText" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
-                      <div className="text-left">
-                        <div className="font-bold">Заявка Max</div>
-                        <div className="text-xs sm:text-sm opacity-90">Быстрая форма</div>
-                      </div>
-                    </Button>
-                  </button>
+                  <Button size="lg" className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg h-16 sm:h-20" onClick={openMaxForm}>
+                    <Icon name="FileText" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
+                    <div className="text-left">
+                      <div className="font-bold">Заявка Max</div>
+                      <div className="text-xs sm:text-sm opacity-90">Быстрая форма</div>
+                    </div>
+                  </Button>
                 </div>
                 
                 <div className="text-center pt-3 pb-4 sm:pt-4 sm:pb-6 border-b border-border">
