@@ -4,6 +4,7 @@ import Icon from '@/components/ui/icon';
 const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const images = [
     {
@@ -151,6 +152,51 @@ const PhotoGallery = () => {
               />
             ))}
           </div>
+        </div>
+
+        <div className="mt-8 max-w-5xl mx-auto">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="w-full flex items-center justify-center gap-2 p-4 bg-card hover:bg-card/80 rounded-lg transition-all shadow-md"
+          >
+            <Icon name="Grid3x3" size={20} />
+            <span className="font-medium">
+              {showAll ? 'Скрыть все фото' : `Показать все ${images.length} фото`}
+            </span>
+            <Icon 
+              name="ChevronDown" 
+              size={20} 
+              className={`transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+            />
+          </button>
+
+          {showAll && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6 animate-fade-in">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover-scale group"
+                  onClick={() => {
+                    setCurrentIndex(index);
+                    toggleZoom();
+                  }}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                    <Icon 
+                      name="Maximize2" 
+                      size={32} 
+                      className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
