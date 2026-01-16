@@ -48,6 +48,20 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
     }
   };
 
+  const trackMaxForm = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'max_form_open');
+    }
+  };
+
+  const openMaxForm = () => {
+    trackMaxForm();
+    if (window.Marquiz && typeof window.Marquiz.showModal === 'function') {
+      window.Marquiz.showModal('675be74dce21de00259c4da0');
+    }
+    setIsOpen(false);
+  };
+
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 sm:gap-3">
       {isOpen && (
@@ -79,6 +93,14 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
               WhatsApp
             </Button>
           </a>
+          <Button 
+            size="default"
+            onClick={openMaxForm}
+            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg w-full text-sm sm:text-base h-10 sm:h-11"
+          >
+            <Icon name="FileText" size={16} className="mr-1.5 sm:mr-2 sm:w-5 sm:h-5" />
+            Заявка Max
+          </Button>
         </div>
       )}
       

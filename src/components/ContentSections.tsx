@@ -44,6 +44,19 @@ const ContentSections = () => {
     }
   };
 
+  const trackMaxForm = () => {
+    if (window.ym) {
+      window.ym(101026698, 'reachGoal', 'max_form_open');
+    }
+  };
+
+  const openMaxForm = () => {
+    trackMaxForm();
+    if (window.Marquiz && typeof window.Marquiz.showModal === 'function') {
+      window.Marquiz.showModal('675be74dce21de00259c4da0');
+    }
+  };
+
   return (
     <>
       <section className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
@@ -344,7 +357,7 @@ const ContentSections = () => {
                   <p className="text-base sm:text-lg mb-3 md:mb-4">Выберите удобный способ связи:</p>
                 </div>
                 
-                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                   <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
                     <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Send" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
@@ -365,15 +378,25 @@ const ContentSections = () => {
                     </Button>
                   </a>
                   
-                  <a href="tel:+79339277797" className="block" onClick={trackPhone}>
+                  <a href="tel:+79094355525" className="block" onClick={trackPhone}>
                     <Button size="lg" variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Phone" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
                       <div className="text-left">
                         <div className="font-bold">Позвонить</div>
-                        <div className="text-xs sm:text-sm">+7 (933) 927-77-97</div>
+                        <div className="text-xs sm:text-sm">+7 (909) 435-55-25</div>
                       </div>
                     </Button>
                   </a>
+                  
+                  <button type="button" className="block w-full" onClick={openMaxForm}>
+                    <Button size="lg" className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg h-16 sm:h-20">
+                      <Icon name="FileText" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
+                      <div className="text-left">
+                        <div className="font-bold">Заявка Max</div>
+                        <div className="text-xs sm:text-sm opacity-90">Быстрая форма</div>
+                      </div>
+                    </Button>
+                  </button>
                 </div>
                 
                 <div className="text-center pt-3 pb-4 sm:pt-4 sm:pb-6 border-b border-border">
