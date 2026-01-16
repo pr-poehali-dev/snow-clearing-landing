@@ -3,7 +3,6 @@ import ClimberAnimation from '@/components/ClimberAnimation';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ContentSections from '@/components/ContentSections';
-import FloatingContact from '@/components/FloatingContact';
 import ScrollToTop from '@/components/ScrollToTop';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 import UrgencyTimer from '@/components/UrgencyTimer';
@@ -58,7 +57,6 @@ const Index = () => {
       <UrgencyTimer />
       <HeroSection />
       <ContentSections />
-      <FloatingContact shouldBlink={isClimberAtBottom} />
       <ScrollToTop />
       <SocialProof />
       <ExitIntentPopup />

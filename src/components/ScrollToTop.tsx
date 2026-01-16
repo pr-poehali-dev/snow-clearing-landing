@@ -25,7 +25,7 @@ const ScrollToTop = () => {
     <Button
       onClick={scrollToTop}
       size="default"
-      className={`fixed bottom-20 left-4 sm:bottom-24 sm:left-6 z-40 bg-secondary hover:bg-secondary/90 shadow-xl rounded-full w-12 h-12 sm:w-14 sm:h-14 p-0 transition-all duration-300 ${
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-primary hover:bg-primary/90 shadow-xl rounded-full w-12 h-12 sm:w-14 sm:h-14 p-0 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
       aria-label="Прокрутить наверх"
