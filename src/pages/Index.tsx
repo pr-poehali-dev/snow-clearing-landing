@@ -7,7 +7,6 @@ import FloatingContact from '@/components/FloatingContact';
 import ScrollToTop from '@/components/ScrollToTop';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 import UrgencyTimer from '@/components/UrgencyTimer';
-import SocialProof from '@/components/SocialProof';
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -60,7 +59,6 @@ const Index = () => {
       <ContentSections />
       <FloatingContact shouldBlink={isClimberAtBottom} />
       <ScrollToTop />
-      <SocialProof />
       <ExitIntentPopup />
     </div>
   );
