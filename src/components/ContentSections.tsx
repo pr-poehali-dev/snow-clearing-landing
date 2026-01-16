@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import CallbackForm from '@/components/CallbackForm';
 import PhotoGallery from '@/components/PhotoGallery';
+import QuickCallbackForm from '@/components/QuickCallbackForm';
+import BlogSection from '@/components/BlogSection';
 
 const ContentSections = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -122,10 +124,10 @@ const ContentSections = () => {
                 price: 'от 200 ₽/м²'
               }
             ].map((service, index) => (
-              <Card key={index} className="hover-scale hover:border-primary/50 transition-all duration-300 bg-card opacity-0 animate-[scaleIn_0.8s_ease-out_forwards]" style={{ animationDelay: `${0.8 + index * 0.2}s` }}>
+              <Card key={index} className="hover-scale hover:border-primary/50 transition-all duration-300 bg-card opacity-0 animate-[scaleIn_0.8s_ease-out_forwards] group" style={{ animationDelay: `${0.8 + index * 0.2}s` }}>
                 <CardContent className="p-4 sm:p-5 md:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mb-3 md:mb-4">
-                    <Icon name={service.icon} size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <Icon name={service.icon} size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:animate-pulse" />
                   </div>
                   <h3 className="text-xl sm:text-xl md:text-2xl font-bold mb-2 md:mb-3">{service.title}</h3>
                   <ul className="space-y-2 mb-3 md:mb-4">
@@ -156,12 +158,12 @@ const ContentSections = () => {
               { icon: 'BadgeCheck', title: 'Гарантия', desc: 'Качество работ документально' },
               { icon: 'Wallet', title: 'Прозрачность', desc: 'Фиксированная стоимость без скрытых платежей' }
             ].map((item, index) => (
-              <Card key={index} className="text-center hover-scale bg-card">
+              <Card key={index} className="text-center hover-scale bg-card group">
                 <CardContent className="p-3 sm:p-4 md:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                    <Icon name={item.icon} size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
+                    <Icon name={item.icon} size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:animate-bounce-subtle" />
                   </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 md:mb-2">{item.title}</h3>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 md:mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-xs sm:text-sm md:text-base text-muted-foreground">{item.desc}</p>
                 </CardContent>
               </Card>
@@ -199,37 +201,43 @@ const ContentSections = () => {
         </div>
       </section>
 
+      <BlogSection />
+
       <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto mb-12 md:mb-16">
+            <QuickCallbackForm />
+          </div>
+
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 md:mb-4">География Работы</h2>
           <p className="text-center text-muted-foreground mb-8 md:mb-12 text-base md:text-lg px-4">Москва и Ближнее Подмосковье (10 км от МКАД)</p>
           
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              <Card className="text-center hover-scale">
+              <Card className="text-center hover-scale group">
                 <CardContent className="p-4 sm:p-5 md:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                    <Icon name="MapPin" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:bg-primary/20 transition-all duration-300">
+                    <Icon name="MapPin" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:animate-bounce-subtle" />
                   </div>
-                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2">Вся Москва</h3>
+                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">Вся Москва</h3>
                   <p className="text-sm md:text-base text-muted-foreground">Работаем во всех районах столицы</p>
                 </CardContent>
               </Card>
-              <Card className="text-center hover-scale">
+              <Card className="text-center hover-scale group">
                 <CardContent className="p-4 sm:p-5 md:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                    <Icon name="Car" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:bg-primary/20 transition-all duration-300">
+                    <Icon name="Car" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:animate-bounce-subtle" />
                   </div>
-                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2">10 км от МКАД</h3>
+                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">10 км от МКАД</h3>
                   <p className="text-sm md:text-base text-muted-foreground">Ближнее Подмосковье</p>
                 </CardContent>
               </Card>
-              <Card className="text-center hover-scale sm:col-span-2 md:col-span-1">
+              <Card className="text-center hover-scale group sm:col-span-2 md:col-span-1">
                 <CardContent className="p-4 sm:p-5 md:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                    <Icon name="Clock" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:bg-primary/20 transition-all duration-300">
+                    <Icon name="Clock" size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:animate-bounce-subtle" />
                   </div>
-                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2">Быстрый выезд</h3>
+                  <h3 className="font-bold text-base sm:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">Быстрый выезд</h3>
                   <p className="text-sm md:text-base text-muted-foreground">В течение 2-3 часов при срочности</p>
                 </CardContent>
               </Card>
