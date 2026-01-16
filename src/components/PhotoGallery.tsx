@@ -5,6 +5,8 @@ const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [gridPage, setGridPage] = useState(0);
+  const photosPerPage = 4;
 
   const images = [
     {
@@ -57,6 +59,9 @@ const PhotoGallery = () => {
     }
   ];
 
+  const totalPages = Math.ceil(images.length / photosPerPage);
+  const visibleImages = images.slice(gridPage * photosPerPage, (gridPage + 1) * photosPerPage);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -64,6 +69,14 @@ const PhotoGallery = () => {
 
     return () => clearInterval(interval);
   }, [images.length]);
+
+  const nextGridPage = () => {
+    setGridPage((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevGridPage = () => {
+    setGridPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -171,30 +184,57 @@ const PhotoGallery = () => {
           </button>
 
           {showAll && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6 animate-fade-in">
-              {images.map((image, index) => (
-                <div
-                  key={index}
-                  className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover-scale group"
-                  onClick={() => {
-                    setCurrentIndex(index);
-                    toggleZoom();
-                  }}
+            <div className="mt-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in">
+                {visibleImages.map((image, idx) => {
+                  const actualIndex = gridPage * photosPerPage + idx;
+                  return (
+                    <div
+                      key={actualIndex}
+                      className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover-scale group"
+                      onClick={() => {
+                        setCurrentIndex(actualIndex);
+                        toggleZoom();
+                      }}
+                    >
+                      <img
+                        src={image.url}
+                        alt={image.alt}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                        <Icon 
+                          name="Maximize2" 
+                          size={32} 
+                          className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center justify-center gap-4 mt-6">
+                <button
+                  onClick={prevGridPage}
+                  className="bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all"
+                  aria-label="Предыдущие фото"
                 >
-                  <img
-                    src={image.url}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                    <Icon 
-                      name="Maximize2" 
-                      size={32} 
-                      className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  </div>
-                </div>
-              ))}
+                  <Icon name="ChevronLeft" size={24} />
+                </button>
+
+                <span className="text-sm font-medium">
+                  {gridPage + 1} / {totalPages}
+                </span>
+
+                <button
+                  onClick={nextGridPage}
+                  className="bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all"
+                  aria-label="Следующие фото"
+                >
+                  <Icon name="ChevronRight" size={24} />
+                </button>
+              </div>
             </div>
           )}
         </div>
