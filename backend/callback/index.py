@@ -3,6 +3,7 @@ from datetime import datetime
 import os
 import urllib.request
 import urllib.parse
+import base64
 
 def handler(event: dict, context) -> dict:
     """API для обработки заявок обратного звонка с отправкой в Telegram"""
@@ -71,8 +72,6 @@ def handler(event: dict, context) -> dict:
 📝 Описание задачи:
 {description}
 
-📎 Файл: {file_name if file_name else 'Не прикреплен'}
-
 🕒 Дата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"""
         
         telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
@@ -94,6 +93,44 @@ def handler(event: dict, context) -> dict:
                     'body': json.dumps({'error': f'Ошибка Telegram: {result_data.get("description")}'}),
                     'isBase64Encoded': False
                 }
+        
+        if file_data and file_name:
+            try:
+                file_bytes = base64.b64decode(file_data)
+                
+                boundary = '----WebKitFormBoundary' + os.urandom(16).hex()
+                body_parts = []
+                
+                body_parts.append(f'--{boundary}'.encode())
+                body_parts.append(f'Content-Disposition: form-data; name="chat_id"'.encode())
+                body_parts.append(b'')
+                body_parts.append(chat_id.encode())
+                
+                body_parts.append(f'--{boundary}'.encode())
+                body_parts.append(f'Content-Disposition: form-data; name="document"; filename="{file_name}"'.encode())
+                body_parts.append(b'Content-Type: application/octet-stream')
+                body_parts.append(b'')
+                body_parts.append(file_bytes)
+                
+                body_parts.append(f'--{boundary}--'.encode())
+                
+                multipart_body = b'\r\n'.join(body_parts)
+                
+                doc_url = f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                doc_req = urllib.request.Request(
+                    doc_url,
+                    data=multipart_body,
+                    headers={'Content-Type': f'multipart/form-data; boundary={boundary}'}
+                )
+                
+                with urllib.request.urlopen(doc_req, timeout=15) as doc_response:
+                    doc_result = doc_response.read().decode('utf-8')
+                    doc_data = json.loads(doc_result)
+                    
+                    if not doc_data.get('ok'):
+                        print(f'Ошибка отправки файла: {doc_data.get("description")}')
+            except Exception as e:
+                print(f'Ошибка обработки файла: {str(e)}')
         
         return {
             'statusCode': 200,
