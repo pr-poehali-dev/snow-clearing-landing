@@ -131,6 +131,10 @@ const PhotoGallery = () => {
             >
               <Icon name="ChevronRight" size={24} />
             </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/80 text-foreground px-4 py-2 rounded-full shadow-lg text-sm font-medium">
+              {currentIndex + 1} / {images.length}
+            </div>
           </div>
 
           <div className="flex justify-center gap-2 mt-6">
@@ -191,6 +195,10 @@ const PhotoGallery = () => {
           >
             <Icon name="ChevronRight" size={32} />
           </button>
+
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-background/90 text-foreground px-5 py-2 rounded-full shadow-lg text-base font-semibold">
+            {currentIndex + 1} / {images.length}
+          </div>
         </div>
       )}
     </section>
