@@ -3,10 +3,11 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
 import os
+import urllib.request
 
 
 def handler(event: dict, context) -> dict:
-    """Быстрая заявка - отправка уведомления на почту"""
+    """Быстрая заявка - отправка уведомления на почту и в Telegram"""
     
     method = event.get('httpMethod', 'POST')
     
@@ -76,17 +77,64 @@ def handler(event: dict, context) -> dict:
         msg['To'] = email_to
         msg['Subject'] = f'🚀 Быстрая заявка с сайта Дюльфер.рф'
         
-        with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
-            server.starttls()
-            server.login(smtp_user, smtp_password)
-            server.send_message(msg)
+        email_sent = False
+        telegram_sent = False
+        errors = []
         
-        return {
-            'statusCode': 200,
-            'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'success': True, 'message': 'Заявка отправлена'}),
-            'isBase64Encoded': False
-        }
+        try:
+            with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
+                server.starttls()
+                server.login(smtp_user, smtp_password)
+                server.send_message(msg)
+            email_sent = True
+        except Exception as e:
+            errors.append(f'Email: {str(e)}')
+        
+        bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+        chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
+        
+        if bot_token and chat_id:
+            try:
+                telegram_message = f"🚀 Быстрая заявка с сайта Дюльфер.рф\n\n📱 Телефон: {phone}"
+                
+                telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                
+                params = urllib.parse.urlencode({
+                    'chat_id': chat_id,
+                    'text': telegram_message
+                }).encode('utf-8')
+                
+                req = urllib.request.Request(telegram_url, data=params)
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    result = response.read().decode('utf-8')
+                    result_data = json.loads(result)
+                    
+                    if result_data.get('ok'):
+                        telegram_sent = True
+                    else:
+                        errors.append(f'Telegram: {result_data.get("description")}')
+            except Exception as e:
+                errors.append(f'Telegram: {str(e)}')
+        
+        if email_sent or telegram_sent:
+            return {
+                'statusCode': 200,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({
+                    'success': True, 
+                    'message': 'Заявка отправлена',
+                    'email_sent': email_sent,
+                    'telegram_sent': telegram_sent
+                }),
+                'isBase64Encoded': False
+            }
+        else:
+            return {
+                'statusCode': 500,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({'error': f'Не удалось отправить: {", ".join(errors)}'}),
+                'isBase64Encoded': False
+            }
         
     except Exception as e:
         return {
