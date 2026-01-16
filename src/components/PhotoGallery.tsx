@@ -70,6 +70,16 @@ const PhotoGallery = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  useEffect(() => {
+    if (!showAll) return;
+
+    const gridInterval = setInterval(() => {
+      setGridPage((prev) => (prev + 1) % totalPages);
+    }, 5000);
+
+    return () => clearInterval(gridInterval);
+  }, [showAll, totalPages]);
+
   const nextGridPage = () => {
     setGridPage((prev) => (prev + 1) % totalPages);
   };
