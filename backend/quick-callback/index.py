@@ -1,13 +1,12 @@
 import json
-import smtplib
-from email.mime.text import MIMEText
 from datetime import datetime
 import os
 import urllib.request
+import urllib.parse
 
 
 def handler(event: dict, context) -> dict:
-    """Быстрая заявка - отправка уведомления на почту и в Telegram"""
+    """Быстрая заявка - отправка уведомления в Telegram"""
     
     method = event.get('httpMethod', 'POST')
     
@@ -47,84 +46,50 @@ def handler(event: dict, context) -> dict:
                 'isBase64Encoded': False
             }
         
-        email_to = os.environ.get('EMAIL_TO', 'dulfer161@yandex.ru')
-        email_from = os.environ.get('EMAIL_FROM', 'dulfer161@yandex.ru')
-        smtp_host = os.environ.get('SMTP_HOST', 'smtp.yandex.ru')
-        smtp_port = int(os.environ.get('SMTP_PORT', '587'))
-        smtp_user = os.environ.get('SMTP_USER', 'dulfer161@yandex.ru')
-        smtp_password = os.environ.get('SMTP_PASSWORD', '')
-        
-        if not smtp_password:
-            return {
-                'statusCode': 500,
-                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'body': json.dumps({'error': 'SMTP пароль не настроен'}),
-                'isBase64Encoded': False
-            }
-        
-        msg = MIMEText(f"""
-🚀 БЫСТРАЯ ЗАЯВКА с сайта Дюльфер.рф
-
-📱 Телефон: {phone}
-
-Дата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}
-
----
-Заявка с сайта дюльфер.рф (быстрая форма)
-        """, 'plain', 'utf-8')
-        
-        msg['From'] = email_from
-        msg['To'] = email_to
-        msg['Subject'] = f'🚀 Быстрая заявка с сайта Дюльфер.рф'
-        
         email_sent = False
         telegram_sent = False
         errors = []
         
-        try:
-            with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
-                server.starttls()
-                server.login(smtp_user, smtp_password)
-                server.send_message(msg)
-            email_sent = True
-        except Exception as e:
-            errors.append(f'Email: {str(e)}')
-        
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
         chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
         
-        if bot_token and chat_id:
-            try:
-                telegram_message = f"🚀 Быстрая заявка с сайта Дюльфер.рф\n\n📱 Телефон: {phone}"
-                
-                telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
-                
-                params = urllib.parse.urlencode({
-                    'chat_id': chat_id,
-                    'text': telegram_message
-                }).encode('utf-8')
-                
-                req = urllib.request.Request(telegram_url, data=params)
-                with urllib.request.urlopen(req, timeout=10) as response:
-                    result = response.read().decode('utf-8')
-                    result_data = json.loads(result)
-                    
-                    if result_data.get('ok'):
-                        telegram_sent = True
-                    else:
-                        errors.append(f'Telegram: {result_data.get("description")}')
-            except Exception as e:
-                errors.append(f'Telegram: {str(e)}')
+        if not bot_token or not chat_id:
+            return {
+                'statusCode': 500,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({'error': 'Telegram не настроен. Добавьте TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в секреты'}),
+                'isBase64Encoded': False
+            }
         
-        if email_sent or telegram_sent:
+        try:
+            telegram_message = f"🚀 Быстрая заявка с сайта Дюльфер.рф\n\n📱 Телефон: {phone}\n\nДата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"
+            
+            telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+            
+            params = urllib.parse.urlencode({
+                'chat_id': chat_id,
+                'text': telegram_message
+            }).encode('utf-8')
+            
+            req = urllib.request.Request(telegram_url, data=params)
+            with urllib.request.urlopen(req, timeout=10) as response:
+                result = response.read().decode('utf-8')
+                result_data = json.loads(result)
+                
+                if result_data.get('ok'):
+                    telegram_sent = True
+                else:
+                    errors.append(f'Telegram: {result_data.get("description")}')
+        except Exception as e:
+            errors.append(f'Telegram: {str(e)}')
+        
+        if telegram_sent:
             return {
                 'statusCode': 200,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                 'body': json.dumps({
                     'success': True, 
-                    'message': 'Заявка отправлена',
-                    'email_sent': email_sent,
-                    'telegram_sent': telegram_sent
+                    'message': 'Заявка отправлена в Telegram'
                 }),
                 'isBase64Encoded': False
             }
