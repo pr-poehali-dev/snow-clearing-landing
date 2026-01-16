@@ -56,8 +56,18 @@ const FloatingContact = ({ shouldBlink = false }: FloatingContactProps) => {
 
   const openMaxForm = () => {
     trackMaxForm();
-    if (window.Marquiz && typeof window.Marquiz.showModal === 'function') {
-      window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+    console.log('FloatingContact: openMaxForm вызван');
+    console.log('window.Marquiz:', window.Marquiz);
+    
+    if (window.Marquiz) {
+      if (typeof window.Marquiz.showModal === 'function') {
+        console.log('Открываем модалку');
+        window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+      } else {
+        console.error('showModal не является функцией');
+      }
+    } else {
+      console.error('Marquiz не загружен');
     }
     setIsOpen(false);
   };

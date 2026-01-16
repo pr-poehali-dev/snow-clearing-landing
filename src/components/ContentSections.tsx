@@ -52,8 +52,20 @@ const ContentSections = () => {
 
   const openMaxForm = () => {
     trackMaxForm();
-    if (window.Marquiz && typeof window.Marquiz.showModal === 'function') {
-      window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+    console.log('openMaxForm вызван');
+    console.log('window.Marquiz:', window.Marquiz);
+    
+    if (window.Marquiz) {
+      console.log('Marquiz найден, пытаемся открыть');
+      if (typeof window.Marquiz.showModal === 'function') {
+        console.log('showModal существует');
+        window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
+      } else {
+        console.error('showModal не является функцией');
+        console.log('Доступные методы:', Object.keys(window.Marquiz));
+      }
+    } else {
+      console.error('Marquiz не загружен');
     }
   };
 
