@@ -44,30 +44,7 @@ const ContentSections = () => {
     }
   };
 
-  const trackMaxForm = () => {
-    if (window.ym) {
-      window.ym(101026698, 'reachGoal', 'max_form_open');
-    }
-  };
 
-  const openMaxForm = () => {
-    trackMaxForm();
-    console.log('openMaxForm вызван');
-    console.log('window.Marquiz:', window.Marquiz);
-    
-    if (window.Marquiz) {
-      console.log('Marquiz найден, пытаемся открыть');
-      if (typeof window.Marquiz.showModal === 'function') {
-        console.log('showModal существует');
-        window.Marquiz.showModal('673d8c9b5c32d90025f0b35e');
-      } else {
-        console.error('showModal не является функцией');
-        console.log('Доступные методы:', Object.keys(window.Marquiz));
-      }
-    } else {
-      console.error('Marquiz не загружен');
-    }
-  };
 
   return (
     <>
@@ -369,7 +346,7 @@ const ContentSections = () => {
                   <p className="text-base sm:text-lg mb-3 md:mb-4">Выберите удобный способ связи:</p>
                 </div>
                 
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                   <a href="https://t.me/Dulfer8" target="_blank" rel="noopener noreferrer" className="block" onClick={trackTelegram}>
                     <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-base sm:text-lg h-16 sm:h-20">
                       <Icon name="Send" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
@@ -399,14 +376,6 @@ const ContentSections = () => {
                       </div>
                     </Button>
                   </a>
-                  
-                  <Button size="lg" className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg h-16 sm:h-20" onClick={openMaxForm}>
-                    <Icon name="FileText" size={20} className="mr-2 sm:mr-3 sm:w-6 sm:h-6" />
-                    <div className="text-left">
-                      <div className="font-bold">Заявка Max</div>
-                      <div className="text-xs sm:text-sm opacity-90">Быстрая форма</div>
-                    </div>
-                  </Button>
                 </div>
                 
                 <div className="text-center pt-3 pb-4 sm:pt-4 sm:pb-6 border-b border-border">
