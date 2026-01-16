@@ -1,9 +1,30 @@
 import { useState, useEffect } from 'react';
+import Icon from '@/components/ui/icon';
 
 const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
+    {
+      url: 'https://cdn.poehali.dev/files/20190105_152826.jpg',
+      alt: 'Очистка крыши от снега промышленными альпинистами'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399353.jpg',
+      alt: 'Работа на высоте с профессиональным снаряжением'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399356.jpg',
+      alt: 'Очистка снега на плоской кровле'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399357.jpg',
+      alt: 'Удаление снежных масс лопатой'
+    },
+    {
+      url: 'https://cdn.poehali.dev/files/5429472664201399358.jpg',
+      alt: 'Ночная работа по очистке козырька от снега'
+    },
     {
       url: 'https://cdn.poehali.dev/files/IMG_20260104_215608_749.jpg',
       alt: 'Промышленные альпинисты за работой'
@@ -11,22 +32,6 @@ const PhotoGallery = () => {
     {
       url: 'https://cdn.poehali.dev/files/IMG_20260104_215609_164.jpg',
       alt: 'Профессиональная очистка крыш'
-    },
-    {
-      url: 'https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/099f084d-866f-439c-8b5d-5f63232f08d7.jpg',
-      alt: 'Очистка снега с кровли'
-    },
-    {
-      url: 'https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/d54f2507-6b30-4e1e-a41f-72c57b0ab9b4.jpg',
-      alt: 'Удаление сосулек'
-    },
-    {
-      url: 'https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/5704450d-ca3c-4f5c-accf-61b0adcb31b1.jpg',
-      alt: 'Команда альпинистов на объекте'
-    },
-    {
-      url: 'https://cdn.poehali.dev/projects/4351694f-9697-402b-a12f-3e13d22f949b/files/2d5decfa-33c0-4bce-9134-da7d9ef3ba95.jpg',
-      alt: 'Профессиональное снаряжение'
     }
   ];
 
@@ -42,6 +47,14 @@ const PhotoGallery = () => {
     setCurrentIndex(index);
   };
 
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 bg-card/30">
       <div className="container mx-auto">
@@ -50,7 +63,7 @@ const PhotoGallery = () => {
         </h2>
         
         <div className="relative max-w-5xl mx-auto">
-          <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-video">
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-video group">
             <div 
               className="flex transition-transform duration-700 ease-out h-full"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -65,6 +78,22 @@ const PhotoGallery = () => {
                 </div>
               ))}
             </div>
+
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Предыдущее фото"
+            >
+              <Icon name="ChevronLeft" size={24} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Следующее фото"
+            >
+              <Icon name="ChevronRight" size={24} />
+            </button>
           </div>
 
           <div className="flex justify-center gap-2 mt-6">
