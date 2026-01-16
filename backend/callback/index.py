@@ -1,15 +1,11 @@
 import json
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from email import encoders
 from datetime import datetime
 import os
-import base64
+import urllib.request
+import urllib.parse
 
 def handler(event: dict, context) -> dict:
-    """API для обработки заявок обратного звонка с отправкой на почту"""
+    """API для обработки заявок обратного звонка с отправкой в Telegram"""
     
     method = event.get('httpMethod', 'GET')
     
@@ -56,61 +52,48 @@ def handler(event: dict, context) -> dict:
                 'isBase64Encoded': False
             }
         
-        email_to = os.environ.get('EMAIL_TO', 'dulfer161@yandex.ru')
-        email_from = os.environ.get('EMAIL_FROM', 'dulfer161@yandex.ru')
-        smtp_host = os.environ.get('SMTP_HOST', 'smtp.yandex.ru')
-        smtp_port = int(os.environ.get('SMTP_PORT', '587'))
-        smtp_user = os.environ.get('SMTP_USER', 'dulfer161@yandex.ru')
-        smtp_password = os.environ.get('SMTP_PASSWORD', '')
+        bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+        chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
         
-        msg = MIMEMultipart()
-        msg['From'] = email_from
-        msg['To'] = email_to
-        msg['Subject'] = f'Новая заявка с сайта Дюльфер.рф от {name}'
-        
-        body_text = f"""
-Новая заявка на обратный звонок!
-
-Имя: {name}
-Телефон: {phone}
-
-Описание задачи:
-{description}
-
-Дата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}
-
----
-Заявка с сайта дюльфер.рф
-        """
-        
-        msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
-        
-        if file_data and file_name:
-            try:
-                file_bytes = base64.b64decode(file_data)
-                part = MIMEBase('application', 'octet-stream')
-                part.set_payload(file_bytes)
-                encoders.encode_base64(part)
-                part.add_header('Content-Disposition', f'attachment; filename="{file_name}"')
-                msg.attach(part)
-            except Exception as e:
-                print(f'Ошибка прикрепления файла: {str(e)}')
-        
-        if not smtp_password:
+        if not bot_token or not chat_id:
             return {
                 'statusCode': 500,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'body': json.dumps({'error': 'SMTP пароль не настроен. Добавьте SMTP_PASSWORD в секреты проекта.'}),
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({'error': 'Telegram не настроен. Добавьте TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в секреты'}),
                 'isBase64Encoded': False
             }
         
-        with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
-            server.starttls()
-            server.login(smtp_user, smtp_password)
-            server.send_message(msg)
+        telegram_message = f"""📋 Новая заявка с сайта Дюльфер.рф
+
+👤 Имя: {name}
+📱 Телефон: {phone}
+
+📝 Описание задачи:
+{description}
+
+📎 Файл: {file_name if file_name else 'Не прикреплен'}
+
+🕒 Дата: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"""
+        
+        telegram_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+        
+        params = urllib.parse.urlencode({
+            'chat_id': chat_id,
+            'text': telegram_message
+        }).encode('utf-8')
+        
+        req = urllib.request.Request(telegram_url, data=params)
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = response.read().decode('utf-8')
+            result_data = json.loads(result)
+            
+            if not result_data.get('ok'):
+                return {
+                    'statusCode': 500,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'body': json.dumps({'error': f'Ошибка Telegram: {result_data.get("description")}'}),
+                    'isBase64Encoded': False
+                }
         
         return {
             'statusCode': 200,
