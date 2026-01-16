@@ -64,28 +64,28 @@ const QuickCallbackForm = () => {
     setIsSubmitting(true);
 
     try {
-      const message = `🚀 Быстрая заявка с сайта Дюльфер.рф\n\n📱 Телефон: ${phone}`;
-      
-      await fetch(`https://api.telegram.org/bot7700727965:AAFfRzdw7yKs4taCd1qJHAAzh77af4eIBXA/sendMessage`, {
+      const response = await fetch('https://functions.poehali.dev/1f4e530b-cac0-4178-819e-0ea0e8ce2966', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: '-4568518346',
-          text: message,
-          parse_mode: 'HTML'
-        })
+        body: JSON.stringify({ phone })
       });
 
-      if (window.ym) {
-        window.ym(101026698, 'reachGoal', 'quick_form_submit');
-      }
+      const data = await response.json();
 
-      setIsSuccess(true);
-      setPhone('');
-      
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
+      if (response.ok) {
+        if (window.ym) {
+          window.ym(101026698, 'reachGoal', 'quick_form_submit');
+        }
+
+        setIsSuccess(true);
+        setPhone('');
+        
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 5000);
+      } else {
+        alert(data.error || 'Ошибка отправки заявки');
+      }
     } catch (error) {
       console.error('Ошибка отправки:', error);
       alert('Произошла ошибка. Пожалуйста, позвоните нам напрямую.');
